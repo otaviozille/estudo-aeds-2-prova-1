@@ -1,0 +1,1737 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#165f51"><title>AEDS2 — Revisão visual e quiz</title><style>
+:root{
+ color-scheme:light;--size:18px;--bg:#f3f0e9;--paper:#fffdf8;--layer:#ebe7de;--layer-soft:#f7f4ee;
+ --ink:#222e3b;--muted:#53606b;--line:#d8d2c6;--accent:#9b431f;--accent-strong:#7c351a;--accent-soft:#f7e7d8;
+ --navy:#243c50;--navy-ink:#fffdf8;--focus:#ad551c;--good:#236441;--good-bg:#e1eee3;--bad:#992e34;--bad-bg:#fae3e3;
+ --code:#1c2935;--code-ink:#eef2f3;--code-comment:#a9b9c6;--code-keyword:#ffc693;--code-string:#b2dfc1;--code-number:#a8dbe6;
+ --hot:#d4e7db;--hot-border:#367153;--shadow:0 8px 28px rgba(45,39,28,.045);--font:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+:root[data-theme="dark"]{
+ color-scheme:dark;--bg:#141b23;--paper:#1d2631;--layer:#283440;--layer-soft:#19232d;
+ --ink:#ecece5;--muted:#b5bec5;--line:#3b4650;--accent:#e9b185;--accent-strong:#ffd0aa;--accent-soft:#3b3028;
+ --navy:#d9e4eb;--navy-ink:#17212b;--focus:#efbc72;--good:#a6d9b7;--good-bg:#253d32;--bad:#f4aeb1;--bad-bg:#442c31;
+ --code:#121b24;--code-ink:#e9edf0;--code-comment:#a2b5c4;--code-keyword:#ffc48d;--code-string:#b7dfbd;--code-number:#a4dce9;
+ --hot:#294b3c;--hot-border:#8ec5a4;--shadow:0 8px 28px rgba(0,0,0,.1);
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--bg);color:var(--ink);font:480 var(--size)/1.75 var(--font);text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-underline-offset:4px}button,input,select{font:inherit}button,a,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:default;opacity:.48}button:focus-visible,a:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:4px}::selection{background:var(--accent);color:var(--paper)}[hidden]{display:none!important}
+.reading-bar{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--line)}.reading-inner{max-width:1080px;min-height:70px;margin:auto;padding:10px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:700;text-decoration:none;color:var(--ink);letter-spacing:-.8px;white-space:nowrap}.brand span{color:var(--accent)}.reading-controls{display:flex;gap:14px;align-items:center}.font-controls{display:flex;align-items:center;gap:1px;background:var(--layer-soft);border:1px solid var(--line);border-radius:8px;padding:2px}.font-controls button{min-width:42px;min-height:42px;padding:6px;font-size:17px;font-weight:750;border:0;border-radius:5px;background:transparent}.font-controls button:hover{background:var(--layer)}.font-label{font-size:12px;color:var(--muted);padding:0 6px;min-width:42px;text-align:center;font-weight:650;font-variant-numeric:tabular-nums}.theme-button{display:flex;gap:10px;align-items:center;border:0;background:transparent;color:var(--ink);padding:8px 0;min-height:46px;font-size:15px;font-weight:650;white-space:nowrap}.switch{display:inline-block;width:38px;height:22px;border-radius:20px;background:var(--line);position:relative;border:1px solid var(--muted)}.switch:before{content:'';position:absolute;width:14px;height:14px;top:3px;left:3px;border-radius:50%;background:var(--paper)}[data-theme=dark] .switch{background:var(--accent);border-color:var(--accent)}[data-theme=dark] .switch:before{left:19px;background:var(--bg)}
+header,main,footer{max-width:1080px;margin:auto;padding:28px}header{padding-top:50px}h1,h2,h3{color:var(--ink)}h1{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:clamp(36px,5vw,58px);line-height:1.12;letter-spacing:-1.8px;max-width:800px;margin:16px 0 22px}h1 em{color:var(--accent);font-style:normal}h2{font-size:1.4em;line-height:1.3;font-weight:750}h3{font-size:1.13em;line-height:1.5;font-weight:750;letter-spacing:-.2px}p{margin:14px 0}b,strong{font-weight:750}.eyebrow{font-size:13px;font-weight:750;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}.lead{font-size:1.08em;line-height:1.65;color:var(--muted);max-width:770px;margin-bottom:24px}.hero-links{display:flex;gap:10px;flex-wrap:wrap;margin:26px 0}.hero-links a{display:flex;align-items:center;min-height:50px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:11px 16px;text-decoration:none;color:var(--ink);font-weight:650;font-size:.86em}.hero-links a:first-child{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}.hero-links a:hover{border-color:var(--accent)}.note{background:var(--accent-soft);border-left:3px solid var(--accent);padding:15px 20px;border-radius:0 8px 8px 0;margin:26px 0 38px;font-size:.9em;line-height:1.65;color:var(--ink)}.menu-label{display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:750;margin:24px 0 16px;padding-bottom:12px;border-bottom:2px solid var(--ink)}.menu-label small{color:var(--muted);font-size:13px;font-weight:550}nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 26px}nav a{display:flex;align-items:center;gap:14px;min-height:86px;padding:16px 4px;text-decoration:none;border-bottom:1px solid var(--line);color:var(--ink);font-size:.91em;font-weight:650;line-height:1.4;transition:color .15s,background .15s}nav a:hover{color:var(--accent);background:var(--layer-soft)}.nav-num{min-width:27px;color:var(--accent);font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;align-self:flex-start;margin-top:4px}.nav-title{flex:1}.nav-arrow{color:var(--muted);font-weight:400;font-size:22px}nav a:last-child .nav-num{font-size:17px}
+main{padding-top:0}details.topic{background:var(--paper);border:1px solid var(--line);border-radius:12px;margin:15px 0;box-shadow:var(--shadow);scroll-margin-top:94px;overflow:clip}summary{cursor:pointer;list-style:none;min-height:56px;padding:18px;font-weight:700;line-height:1.5}summary::-webkit-details-marker{display:none}summary:after{content:'+';font:400 24px/1 var(--font);color:var(--accent);margin-left:auto;padding-left:14px;flex-shrink:0}details[open]>summary:after{content:'−'}.topic>summary{display:flex;align-items:center;gap:15px;padding:22px 26px;font-size:1.08em;letter-spacing:-.3px}.topic[open]>summary{border-bottom:1px solid var(--line);background:var(--layer-soft)}.topic-num{display:flex;align-items:center;justify-content:center;background:var(--accent-soft);color:var(--accent);border-radius:7px;min-width:37px;height:37px;font-size:14px;font-weight:800;letter-spacing:0}.summary-label{flex:1}.content{padding:10px 28px 26px}.content>p,.content>ul{max-width:850px}.content>details{margin-top:22px;border:1px solid var(--line);border-radius:9px;overflow:hidden}.content>details>summary{display:flex;align-items:center;background:var(--layer-soft);font-size:.98em;padding:18px}.content>details>div{padding:0 18px 18px}.content details details{border:1px solid var(--line);margin:12px 0;border-radius:8px}.content details details>summary{display:flex;align-items:center}.formula{background:var(--layer-soft);border-left:3px solid var(--accent);padding:18px 22px;border-radius:0 8px 8px 0;margin:22px 0;font-family:var(--font);font-size:1.04em;font-weight:550;line-height:1.85;overflow-wrap:anywhere}.table{overflow-x:auto;border:1px solid var(--line);border-radius:9px;margin:20px 0}table{border-collapse:collapse;width:100%;font-size:.94em;line-height:1.6}td,th{text-align:left;padding:14px 17px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:.91em;color:var(--accent);font-weight:750;background:var(--layer-soft)}tr:last-child td{border-bottom:0}tbody tr:nth-child(even){background:var(--layer-soft)}code{font-family:ui-monospace,'Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace;font-size:.9em}p code,li code,td code{color:var(--accent);background:var(--layer-soft);padding:2px 5px;border-radius:4px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--code);color:var(--code-ink);border:1px solid var(--line);border-radius:9px;padding:20px;font:500 calc(var(--size) - 2px)/1.8 ui-monospace,'Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace;tab-size:4;margin:16px 0}pre code{font:inherit;color:inherit}.tok-comment{color:var(--code-comment);font-weight:450}.tok-keyword{color:var(--code-keyword);font-weight:650}.tok-string{color:var(--code-string)}.tok-number{color:var(--code-number)}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0 10px;align-items:center}.tabs [data-lang]{min-width:66px}.tabs [data-copy]{margin-left:auto;font-size:.83em}.program p{font-size:.85em;color:var(--muted);font-weight:550}.program [hidden]{display:none}button,select{min-height:48px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);padding:10px 15px;font-size:.92em;font-weight:650;line-height:1.45}button:hover:not(:disabled){border-color:var(--accent)}button[aria-pressed=true]{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}.small{font-size:.82em}.back{display:inline-flex;align-items:center;margin-top:20px;padding:10px 0;color:var(--accent);font-weight:700;font-size:.92em;text-decoration:none}.back:hover{text-decoration:underline}.float{position:fixed;right:22px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:25;background:var(--navy);color:var(--navy-ink);border:1px solid var(--navy);border-radius:30px;padding:12px 20px;text-decoration:none;font-weight:750;font-size:16px;box-shadow:0 4px 20px #0002}
+.sim{background:var(--layer-soft);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:10px;padding:22px;margin:26px 0}.sim h3{margin:0 0 16px}.sim select{width:100%;margin:8px 0 20px}.stage{min-height:86px}.cells{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:12px 0}.cell{display:flex;flex-direction:column;justify-content:center;align-items:center;min-width:76px;min-height:90px;border:1px solid var(--line);border-radius:8px;background:var(--paper);padding:8px 12px;gap:2px}.cell small{font-size:12px;font-weight:650;color:var(--muted)}.cell strong{font:650 1.28em/1.5 var(--font)}.cell.hot{background:var(--hot);border:2px solid var(--hot-border)}.stage svg{display:block;width:100%;max-width:350px;margin:auto;color:var(--ink)}.stage svg rect.node{fill:var(--paper);stroke:var(--line);stroke-width:1.5}.stage svg rect.hot{fill:var(--hot);stroke:var(--hot-border);stroke-width:2}.stage svg text{fill:var(--ink);font:650 17px var(--font)}.stage svg text.ptr{fill:var(--muted);font-size:12px;font-weight:600}.stage svg path{stroke:var(--muted);stroke-width:1.8;fill:none}.stage svg marker path{fill:var(--muted);stroke:none}.step-controls{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:18px 0 12px}.step-controls .next{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}.stepnum{font-size:14px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}.simdesc{font-size:1em;font-weight:550;line-height:1.7;margin:18px 0 8px}.extras{font-size:.88em;font-weight:650;color:var(--accent);overflow-wrap:anywhere}.reset{background:transparent;color:var(--muted);border-color:transparent;padding-left:0}.quiz-cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:22px 0}.cat{display:flex;flex-direction:column;justify-content:center;gap:6px;text-align:left;min-height:92px;padding:17px;font-size:1em;font-weight:750;background:var(--layer-soft)}.cat small{font-weight:550;font-size:13px;color:var(--muted);line-height:1.5}.answers{display:grid;gap:12px;margin:22px 0}.answers button{display:flex;align-items:flex-start;gap:14px;text-align:left;font-size:1em;font-weight:550;padding:17px;min-height:62px}.answers button>b{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;background:var(--layer);color:var(--ink);border-radius:6px;font-size:14px;margin-top:2px}.answers button.correct{background:var(--good-bg);border-color:var(--good);color:var(--ink);opacity:1}.answers button.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--ink);opacity:1}.answers button:disabled:not(.correct):not(.wrong){opacity:.7}.success{color:var(--good);font-weight:650}.error{color:var(--bad)}#feedback{line-height:1.75}#feedback:has(p){background:var(--layer-soft);border:1px solid var(--line);border-radius:9px;padding:2px 18px 16px}#next-question{background:var(--navy);color:var(--navy-ink);border-color:var(--navy)}.source{font-size:.81em;color:var(--muted);font-weight:500}.hint{font-size:.91em;border-bottom:1px solid var(--line)}.hint summary{display:flex;padding:12px 0;font-weight:650}.hint p{padding-bottom:10px}#quiz-question{margin-top:28px;scroll-margin-top:100px}#quiz-question>details>p{padding:0 16px}label{font-size:.9em;font-weight:700}footer{font-size:.84em;line-height:1.8;padding-top:14px;padding-bottom:110px;color:var(--muted)}noscript{display:block;max-width:1024px;margin:20px auto;padding:20px;background:var(--accent-soft);color:var(--ink)}
+@media(max-width:760px){header,main,footer{padding-left:20px;padding-right:20px}header{padding-top:32px}nav{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}.reading-inner{padding:10px 20px}.topic>summary{padding:20px;gap:12px}.content{padding:8px 20px 22px}.quiz-cats{grid-template-columns:repeat(2,minmax(0,1fr))}.content>details>div{padding-left:12px;padding-right:12px}pre{padding:16px}.formula{padding:16px}.sim{padding:18px}}
+@media(max-width:480px){:root{--size:18px}header,main,footer{padding-left:16px;padding-right:16px}.reading-inner{padding:8px 16px;min-height:66px;gap:8px}.brand{font-size:20px}.reading-controls{gap:10px}.theme-button{font-size:13px;gap:7px}.font-label{display:none}.font-controls button{min-width:34px;font-size:16px}.switch{width:32px;height:20px}.switch:before{width:12px;height:12px;top:3px;left:3px}[data-theme=dark] .switch:before{left:15px}.eyebrow{font-size:11px;letter-spacing:.11em}h1{font-size:39px;letter-spacing:-1.2px;margin-top:18px}.lead{font-size:1em;line-height:1.7}.hero-links{gap:8px}.hero-links a:first-child{width:100%;justify-content:center}.hero-links a{font-size:.81em;padding:10px 12px;flex:1}.note{padding:14px 16px;font-size:.86em;margin-bottom:30px}.menu-label small{font-size:11px}nav{gap:0 14px}nav a{font-size:.84em;min-height:90px;align-items:flex-start;padding:16px 0;gap:8px}.nav-num{min-width:22px;font-size:12px}.nav-arrow{display:none}.topic>summary{padding:17px 15px;gap:10px;font-size:1.02em}.topic-num{min-width:30px;height:30px;font-size:12px;border-radius:6px}.content{padding:6px 16px 22px}.content>details>summary{padding:15px;font-size:.95em}.content>details>div{padding:0 10px 12px}pre{font-size:calc(var(--size) - 3px);line-height:1.75;padding:14px}.table{margin-left:-3px;margin-right:-3px}td,th{padding:11px 9px;font-size:.94em}button,select{font-size:.9em;padding:10px 12px}.sim{padding:15px;margin:22px -2px}.cell{min-width:65px;min-height:82px;padding:8px}.cell small{font-size:12px}.step-controls{gap:6px}.step-controls button{font-size:.83em;padding:10px}.stepnum{font-size:12px}.quiz-cats{gap:8px}.cat{padding:13px;font-size:.92em;min-height:90px}.cat small{font-size:12px}.answers button{font-size:.98em;padding:14px;gap:10px}.float{right:16px;bottom:calc(16px + env(safe-area-inset-bottom));font-size:15px}.program p{font-size:.78em}.source{font-size:.82em}}
+@media(max-width:350px){.reading-inner{padding-left:12px;padding-right:12px}.brand{font-size:18px}.theme-button{font-size:12px}.font-controls button{min-width:30px}.reading-controls{gap:7px}.hero-links a{width:100%;flex:auto}.topic>summary{font-size:.96em}.content{padding-left:12px;padding-right:12px}.formula{padding:12px}nav a{font-size:.8em}.step-controls button{padding:10px 8px}.tabs [data-copy]{margin-left:0}.quiz-cats{grid-template-columns:1fr}.stage svg text.ptr{font-size:11px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{:root{--bg:white;--paper:white;--ink:black;--muted:#333;--line:#bbb;--layer-soft:#eee;--accent:#333;--code:#eee;--code-ink:black}.reading-bar,nav,.float,.tabs,button,.sim,.hero-links,.menu-label{display:none}body{font-size:12pt;background:white}.program [hidden]{display:block!important}pre{color:black;background:#eee;font-size:10pt}details{break-inside:avoid}.topic{box-shadow:none}header,main,footer{padding:12px}.tok-comment,.tok-keyword,.tok-string,.tok-number{color:black}h1{font-size:28pt}}
+.theme-button[aria-pressed=true]{background:transparent;color:var(--ink);border-color:transparent}.nav-title,.summary-label{min-width:0;overflow-wrap:anywhere}</style><script id="reading-theme-init">(function(){var t='light',z=18;try{var saved=localStorage.getItem('aeds2-theme');t=(saved==='light'||saved==='dark')?saved:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');var size=Number(localStorage.getItem('aeds2-font-size'));if([18,20,22].includes(size))z=size;}catch(e){if(typeof matchMedia==='function'&&matchMedia('(prefers-color-scheme: dark)').matches)t='dark';}document.documentElement.dataset.theme=t;document.documentElement.style.setProperty('--size',z+'px');})();</script></head><body><div class="reading-bar"><div class="reading-inner"><a class="brand" href="#menu" aria-label="AEDS2, voltar ao menu">aeds<span>2</span> / caderno</a><div class="reading-controls"><div class="font-controls" role="group" aria-label="Tamanho do texto"><button type="button" id="font-smaller" aria-label="Diminuir tamanho do texto">A−</button><span class="font-label" id="font-label">18 px</span><button type="button" id="font-larger" aria-label="Aumentar tamanho do texto">A+</button></div><button type="button" id="theme-toggle" class="theme-button" aria-pressed="false"><span class="switch" aria-hidden="true"></span><span>Modo escuro</span></button></div></div></div><header id="menu"><div class="eyebrow">Caderno de estudo · Otavio · PUC Minas</div><h1>Entenda o código.<br><em>Lembre da lógica.</em></h1><p class="lead">Sua revisão de AEDS2: explicações diretas, código completo e cada operação acontecendo na sua frente.</p><div class="hero-links"><a href="#quiz">Fazer questões</a><a href="#t12">Lista simples + ordenação</a><a href="#t13">Lista dupla + ordenação</a></div><div class="note">Toque em um assunto para abrir. Em cada código, escolha C ou Java. Nas demonstrações, avance no seu ritmo. Tudo funciona sem internet após abrir o arquivo em um navegador; os links das fontes precisam de conexão.</div><div class="menu-label"><span>Encontre sua matéria</span><small>17 tópicos + exercícios</small></div><nav aria-label="Matérias"><a href="#t0"><span class="nav-num">01</span><span class="nav-title">Como usar e o que priorizar</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t1"><span class="nav-num">02</span><span class="nav-title">Complexidade: Θ, O e Ω</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t2"><span class="nav-num">03</span><span class="nav-title">Somatórios: reconhecer e resolver</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t3"><span class="nav-num">04</span><span class="nav-title">Do for ao somatório + log</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t4"><span class="nav-num">05</span><span class="nav-title">Indução: prova passo a passo</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t5"><span class="nav-num">06</span><span class="nav-title">Lista em vetor — inserir, remover e pesquisar</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t6"><span class="nav-num">07</span><span class="nav-title">Pilha em vetor</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t7"><span class="nav-num">08</span><span class="nav-title">Fila normal em vetor</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t8"><span class="nav-num">09</span><span class="nav-title">Fila circular em vetor</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t9"><span class="nav-num">10</span><span class="nav-title">Cabeça, células e ponteiros</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t10"><span class="nav-num">11</span><span class="nav-title">Pilha encadeada sem cabeça</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t11"><span class="nav-num">12</span><span class="nav-title">Fila encadeada com cabeça</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t12"><span class="nav-num">13</span><span class="nav-title">Lista simples COMPLETA + ordenações</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t13"><span class="nav-num">14</span><span class="nav-title">Lista dupla COMPLETA + ordenações</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t14"><span class="nav-num">15</span><span class="nav-title">Ordenações em vetor — programa completo</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t15"><span class="nav-num">16</span><span class="nav-title">Pesquisas e recursividade</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#t16"><span class="nav-num">17</span><span class="nav-title">Fontes e convenções</span><span class="nav-arrow" aria-hidden="true">↗</span></a><a href="#quiz"><span class="nav-num">★</span><span class="nav-title">Questões por matéria</span><span class="nav-arrow" aria-hidden="true">↗</span></a></nav></header><noscript>Para usar o quiz e as demonstrações, abra este HTML em um navegador com JavaScript habilitado. Os textos e códigos continuam disponíveis abaixo.</noscript><main><details class="topic" id="t0"><summary><span class="topic-num">01</span><span class="summary-label">Como usar e o que priorizar</span></summary><div class="content"><p>Abra o tópico pelo menu e toque em C ou Java. Cada bloco de código é um programa independente e completo, com exemplo de uso no main. Não junte todos no mesmo arquivo.</p><p><b>Prioridade:</b> complexidade e somatórios → seleção, bolha, inserção e Shellsort → cabeça, lista simples e dupla → ordenação dentro das listas → fila circular.</p><p>Em C: salve como programa.c e compile com <code>gcc -std=c11 programa.c -o programa</code>. Em Java: salve como Main.java, compile com <code>javac Main.java</code> e execute <code>java Main</code>. Os exemplos interrompem a execução ao detectar operação inválida, para simplificar o estudo.</p><p><b>Origem:</b> conteúdos e exercícios do repositório ICEI/PUC Minas. Os programas foram reunidos e adaptados para serem independentes; não são cópias literais dos slides. Mantemos array, n, swap e os saltos 3h + 1 no Shellsort. Selection/Bubble/Insertion em listas são adaptações didáticas solicitadas por você; os exercícios confirmados nos slides pedem Shellsort/Quicksort em listas.</p><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t1"><summary><span class="topic-num">02</span><span class="summary-label">Complexidade: Θ, O e Ω</span></summary><div class="content"><p><b>Primeiro escolha a operação relevante:</b> comparações entre dados, adições, subtrações ou chamadas da função pedida. Não conte automaticamente todas as linhas.</p><div class="table"><table><thead><tr><th>Conceito</th><th>Exemplo</th></tr></thead><tbody><tr><td>Função exata</td><td>T(n) = 3n² + 5n + 2</td></tr><tr><td>Ordem justa</td><td>Θ(n²): o termo quadrático domina</td></tr><tr><td>Limite superior</td><td>O(n²) e O(n³) são válidos; O(n) não</td></tr><tr><td>Limite inferior</td><td>Ω(n) e Ω(n²) são válidos; Ω(n³) não</td></tr></tbody></table></div><p>O não significa automaticamente pior caso; Ω não significa melhor caso. Escolha o caso e depois descreva o crescimento. Os limites admitem constantes e valem para n suficientemente grande.</p><div class="table"><table><thead><tr><th>Crescimento</th><th>Exemplo típico</th></tr></thead><tbody><tr><td>Θ(1)</td><td>Uma operação constante</td></tr><tr><td>Θ(log n)</td><td>Índice dividido por 2 até parar</td></tr><tr><td>Θ(n)</td><td>Uma varredura</td></tr><tr><td>Θ(n log n)</td><td>n passagens com trabalho logarítmico</td></tr><tr><td>Θ(n²)</td><td>Dois laços de n aninhados</td></tr><tr><td>Θ(n³)</td><td>Três laços de n aninhados</td></tr></tbody></table></div><p>Lista 1, 5(b): 500n + 100n<sup>1,5</sup> + 50n log₁₀n tem ordem <b>Θ(n<sup>1,5</sup>)</b>. O termo dominante deve existir na função; não escolha n² só porque apareceu numa tabela.</p><div class="sim" data-sim="complexity"></div><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t2"><summary><span class="topic-num">03</span><span class="summary-label">Somatórios: reconhecer e resolver</span></summary><div class="content"><p>Σ significa somar. O índice indica a passagem; a expressão à direita indica quanto será somado em cada passagem.</p><div class="formula">Σ de i=1 até 5 de 1 = 1+1+1+1+1 = 5<br>Σ de i=1 até 5 de i = 1+2+3+4+5 = 15</div><div class="table"><table><thead><tr><th>Soma</th><th>Forma fechada</th></tr></thead><tbody><tr><td>Σ de i=a até b de c</td><td>c(b − a + 1), para inteiros a ≤ b</td></tr><tr><td>Σ de i=0 até n de i</td><td>n(n+1)/2</td></tr><tr><td>Σ de i=0 até n−1 de i</td><td>n(n−1)/2</td></tr><tr><td>Σ de i=0 até n de i²</td><td>n(n+1)(2n+1)/6</td></tr><tr><td>Σ de i=0 até n de i³</td><td>[n(n+1)/2]²</td></tr><tr><td>Σ de i=0 até n de qⁱ</td><td>(qⁿ⁺¹−1)/(q−1), q ≠ 1</td></tr></tbody></table></div><p><b>Limites:</b> 0…n tem n+1 termos; 0…n−1 tem n termos; 1…n tem n termos. Constante sai multiplicando. Soma de expressões pode ser separada.</p><div class="formula">Lista 1 — 1(a)<br>Σ(3i+4), i=0…n<br>= 3Σi + 4(n+1)<br>= 3n(n+1)/2 + 4(n+1)<br>= (3n²+11n+8)/2 → Θ(n²)</div><div class="formula">Lista 1 — 1(b)<br>(2i+3)² = 4i²+12i+9<br>Σ, i=0…n−1<br>= 4(n−1)n(2n−1)/6 + 12n(n−1)/2 + 9n<br>= (4n³+12n²+11n)/3 → Θ(n³)</div><p>Aqui Θ classifica o crescimento da soma. O custo de calcular uma fórmula fechada é outra pergunta.</p><div class="sim" data-sim="sum"></div><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t3"><summary><span class="topic-num">04</span><span class="summary-label">Do for ao somatório + log</span></summary><div class="content"><p>Exemplo estudado nos slides: procurar o menor faz uma comparação por passagem de i=1 até n−1. T(n)=Σ1=n−1. Não é Gauss, porque o termo somado é 1, não i.</p><pre><code>for (int i = 1; i &lt; n; i++) {
+    if (min &gt; array[i]) min = array[i];
+}</code></pre><p><b>Lista 1, questão 10 — contar subtrações:</b></p><pre><code>for (int i = 0; i &lt; n; i++) {
+    for (int j = 0; j &lt; i; j++) {
+        b = b - 1;
+        c--;
+    }
+    d = c - d;
+}</code></pre><div class="formula">Para cada i: 2i + 1 subtrações.<br>T(n)=Σ(2i+1), i=0…n−1<br>= 2[n(n−1)/2] + n = n².<br>Para n=5: 1+3+5+7+9=25.</div><p><b>Logaritmo:</b> para n inteiro ≥1, o laço <code>for (int i=n; i&gt;1; i/=2)</code> executa ⌊log₂n⌋ vezes. Se faz 3 chamadas por passagem, T(n)=3⌊log₂n⌋. Se há uma chamada fora, some 1. Se um laço externo repete isso n vezes, multiplique por n.</p><p>Laços separados: somam custos. Laços aninhados: some o custo interno para cada passagem externa; só multiplique diretamente quando esse custo for igual em todas as passagens.</p><div class="sim" data-sim="log"></div><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t4"><summary><span class="topic-num">05</span><span class="summary-label">Indução: prova passo a passo</span></summary><div class="content"><p><b>Base → hipótese → próximo termo → fórmula para k+1.</b> Você não troca tudo aleatoriamente: usa a hipótese apenas na soma anterior.</p><div class="formula">Gauss: S(n)=1+2+…+n=n(n+1)/2<br><br>Base n=1: 1=1(2)/2.<br>Hipótese: S(k)=k(k+1)/2.<br>Passo: S(k+1)=S(k)+(k+1)<br>= k(k+1)/2 + (k+1)<br>= [k(k+1)+2(k+1)]/2<br>= (k+1)(k+2)/2.<br>É a fórmula com n=k+1. Logo vale para todo n≥1.</div><div class="formula">Questão 10: T(n)=Σ(2i+1), i=0…n−1=n²<br>Base n=1: 1=1².<br>Hipótese: T(k)=k².<br>Novo termo: i=k → 2k+1.<br>T(k+1)=k²+2k+1=(k+1)².</div><div class="formula">Lista 1, 1(a) e 2:<br>S(n)=Σ(3i+4), i=0…n<br>Fórmula: (3n²+11n+8)/2.<br>Base n=0: 4=8/2.<br>Hipótese: S(k)=(3k²+11k+8)/2.<br>Novo termo: 3(k+1)+4=3k+7.<br>S(k+1)=(3k²+17k+22)/2.<br>A fórmula em k+1 produz o mesmo resultado.</div><p><b>Erro a evitar:</b> 2k+1 era o novo ímpar. Para Gauss, o próximo termo é k+1. Cada sequência tem seu próprio novo termo.</p><div class="sim" data-sim="induction"></div><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t5"><summary><span class="topic-num">06</span><span class="summary-label">Lista em vetor — inserir, remover e pesquisar</span></summary><div class="content"><p>Insere na posição abrindo espaço à direita; remove fechando o espaço à esquerda. n é quantidade usada; CAP é capacidade. Inserir/remover início ou meio: O(n); final: O(1). Código completo adaptado.</p><div class="sim" data-sim="arraylist"></div><details><summary>Códigos completos · C / Java</summary><div class="program"><div class="tabs"><button data-lang="c" aria-pressed="true">C</button><button data-lang="java" aria-pressed="false">Java</button><button data-copy>Copiar código</button></div><div data-code="c" ><p>Programa independente · programa.c</p><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define CAP 100
+
+void erro(void) {
+    fprintf(stderr, &quot;Operacao invalida ou sem memoria\n&quot;);
+    exit(EXIT_FAILURE);
+}
+void imprimir(int x) { printf(&quot;%d &quot;, x); }
+void linha(void) { printf(&quot;\n&quot;); }
+
+int array[CAP];
+int n = 0;
+
+void inserir(int x, int pos) {
+    if (n == CAP || pos &lt; 0 || pos &gt; n) erro();
+    for (int i = n; i &gt; pos; i--)
+        array[i] = array[i - 1];
+    array[pos] = x;
+    n++;
+}
+void inserirInicio(int x) { inserir(x, 0); }
+void inserirFim(int x) { inserir(x, n); }
+int remover(int pos) {
+    if (pos &lt; 0 || pos &gt;= n) erro();
+    int x = array[pos];
+    for (int i = pos; i &lt; n - 1; i++)
+        array[i] = array[i + 1];
+    n--;
+    return x;
+}
+int removerInicio(void) { return remover(0); }
+int removerFim(void) { return remover(n - 1); }
+int pesquisar(int x) {
+    for (int i = 0; i &lt; n; i++)
+        if (array[i] == x) return i;
+    return -1;
+}
+void mostrar(void) {
+    for (int i = 0; i &lt; n; i++) imprimir(array[i]);
+    linha();
+}
+
+int main(void) {
+    inserirFim(7);
+    inserirInicio(2);
+    inserir(5, 1);
+    mostrar(); // 2 5 7
+    imprimir(remover(1)); linha(); // 5
+    mostrar(); // 2 7
+    return 0;
+}
+</code></pre></div><div data-code="java" hidden><p>Programa independente · Main.java</p><pre><code>public class Main {
+static final int CAP = 100;
+static void erro() {
+    throw new IllegalStateException(&quot;Operacao invalida&quot;);
+}
+static void imprimir(int x) { System.out.print(x + &quot; &quot;); }
+static void linha() { System.out.println(); }
+static int[] array = new int[CAP];
+static int n = 0;
+static void inserir(int x, int pos) {
+    if (n == CAP || pos &lt; 0 || pos &gt; n) erro();
+    for (int i = n; i &gt; pos; i--)
+        array[i] = array[i - 1];
+    array[pos] = x;
+    n++;
+}
+static void inserirInicio(int x) { inserir(x, 0); }
+static void inserirFim(int x) { inserir(x, n); }
+static int remover(int pos) {
+    if (pos &lt; 0 || pos &gt;= n) erro();
+    int x = array[pos];
+    for (int i = pos; i &lt; n - 1; i++)
+        array[i] = array[i + 1];
+    n--;
+    return x;
+}
+static int removerInicio() { return remover(0); }
+static int removerFim() { return remover(n - 1); }
+static int pesquisar(int x) {
+    for (int i = 0; i &lt; n; i++)
+        if (array[i] == x) return i;
+    return -1;
+}
+static void mostrar() {
+    for (int i = 0; i &lt; n; i++) imprimir(array[i]);
+    linha();
+}
+
+public static void main(String[] args) {
+    inserirFim(7);
+    inserirInicio(2);
+    inserir(5, 1);
+    mostrar(); // 2 5 7
+    imprimir(remover(1)); linha(); // 5
+    mostrar(); // 2 7
+}
+}
+</code></pre></div></div></details><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t6"><summary><span class="topic-num">07</span><span class="summary-label">Pilha em vetor</span></summary><div class="content"><p>LIFO: último entra, primeiro sai. Topo = n−1. Inserir e remover: O(1).</p><div class="sim" data-sim="stack"></div><details><summary>Códigos completos · C / Java</summary><div class="program"><div class="tabs"><button data-lang="c" aria-pressed="true">C</button><button data-lang="java" aria-pressed="false">Java</button><button data-copy>Copiar código</button></div><div data-code="c" ><p>Programa independente · programa.c</p><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define CAP 100
+
+void erro(void) {
+    fprintf(stderr, &quot;Operacao invalida ou sem memoria\n&quot;);
+    exit(EXIT_FAILURE);
+}
+void imprimir(int x) { printf(&quot;%d &quot;, x); }
+void linha(void) { printf(&quot;\n&quot;); }
+
+int array[CAP];
+int n = 0;
+
+void inserir(int x) {
+    if (n == CAP) erro();
+    array[n++] = x;
+}
+int remover(void) {
+    if (n == 0) erro();
+    return array[--n];
+}
+void mostrar(void) {
+    for (int i = n - 1; i &gt;= 0; i--) imprimir(array[i]);
+    linha();
+}
+
+int main(void) {
+    inserir(10); inserir(20); inserir(30);
+    imprimir(remover()); linha(); // 30
+    mostrar(); // 20 10, do topo para a base
+    return 0;
+}
+</code></pre></div><div data-code="java" hidden><p>Programa independente · Main.java</p><pre><code>public class Main {
+static final int CAP = 100;
+static void erro() {
+    throw new IllegalStateException(&quot;Operacao invalida&quot;);
+}
+static void imprimir(int x) { System.out.print(x + &quot; &quot;); }
+static void linha() { System.out.println(); }
+static int[] array = new int[CAP];
+static int n = 0;
+static void inserir(int x) {
+    if (n == CAP) erro();
+    array[n++] = x;
+}
+static int remover() {
+    if (n == 0) erro();
+    return array[--n];
+}
+static void mostrar() {
+    for (int i = n - 1; i &gt;= 0; i--) imprimir(array[i]);
+    linha();
+}
+
+public static void main(String[] args) {
+    inserir(10); inserir(20); inserir(30);
+    imprimir(remover()); linha(); // 30
+    mostrar(); // 20 10, do topo para a base
+}
+}
+</code></pre></div></div></details><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t7"><summary><span class="topic-num">08</span><span class="summary-label">Fila normal em vetor</span></summary><div class="content"><p>FIFO: primeiro entra, primeiro sai. Esta versão desloca os dados ao remover. Inserção O(1), remoção O(n).</p><div class="sim" data-sim="queue"></div><details><summary>Códigos completos · C / Java</summary><div class="program"><div class="tabs"><button data-lang="c" aria-pressed="true">C</button><button data-lang="java" aria-pressed="false">Java</button><button data-copy>Copiar código</button></div><div data-code="c" ><p>Programa independente · programa.c</p><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define CAP 100
+
+void erro(void) {
+    fprintf(stderr, &quot;Operacao invalida ou sem memoria\n&quot;);
+    exit(EXIT_FAILURE);
+}
+void imprimir(int x) { printf(&quot;%d &quot;, x); }
+void linha(void) { printf(&quot;\n&quot;); }
+
+int array[CAP];
+int n = 0;
+
+void inserir(int x) {
+    if (n == CAP) erro();
+    array[n++] = x;
+}
+int remover(void) {
+    if (n == 0) erro();
+    int x = array[0];
+    for (int i = 0; i &lt; n - 1; i++)
+        array[i] = array[i + 1];
+    n--;
+    return x;
+}
+void mostrar(void) {
+    for (int i = 0; i &lt; n; i++) imprimir(array[i]);
+    linha();
+}
+
+int main(void) {
+    inserir(10); inserir(20); inserir(30);
+    imprimir(remover()); linha(); // 10
+    mostrar(); // 20 30
+    return 0;
+}
+</code></pre></div><div data-code="java" hidden><p>Programa independente · Main.java</p><pre><code>public class Main {
+static final int CAP = 100;
+static void erro() {
+    throw new IllegalStateException(&quot;Operacao invalida&quot;);
+}
+static void imprimir(int x) { System.out.print(x + &quot; &quot;); }
+static void linha() { System.out.println(); }
+static int[] array = new int[CAP];
+static int n = 0;
+static void inserir(int x) {
+    if (n == CAP) erro();
+    array[n++] = x;
+}
+static int remover() {
+    if (n == 0) erro();
+    int x = array[0];
+    for (int i = 0; i &lt; n - 1; i++)
+        array[i] = array[i + 1];
+    n--;
+    return x;
+}
+static void mostrar() {
+    for (int i = 0; i &lt; n; i++) imprimir(array[i]);
+    linha();
+}
+
+public static void main(String[] args) {
+    inserir(10); inserir(20); inserir(30);
+    imprimir(remover()); linha(); // 10
+    mostrar(); // 20 30
+}
+}
+</code></pre></div></div></details><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t8"><summary><span class="topic-num">09</span><span class="summary-label">Fila circular em vetor</span></summary><div class="content"><p>primeiro = próxima remoção; ultimo = próxima inserção. Nesta convenção reservamos uma posição: CAP posições guardam CAP−1 dados. O módulo faz voltar ao início. Não desloca valores; ambas operações são O(1).</p><div class="formula">Vazia: primeiro == ultimo<br>Cheia: (ultimo+1) % CAP == primeiro</div><div class="sim" data-sim="circle"></div><details><summary>Códigos completos · C / Java</summary><div class="program"><div class="tabs"><button data-lang="c" aria-pressed="true">C</button><button data-lang="java" aria-pressed="false">Java</button><button data-copy>Copiar código</button></div><div data-code="c" ><p>Programa independente · programa.c</p><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define CAP 100
+
+void erro(void) {
+    fprintf(stderr, &quot;Operacao invalida ou sem memoria\n&quot;);
+    exit(EXIT_FAILURE);
+}
+void imprimir(int x) { printf(&quot;%d &quot;, x); }
+void linha(void) { printf(&quot;\n&quot;); }
+
+int array[CAP];
+int primeiro = 0, ultimo = 0;
+
+void inserir(int x) {
+    if ((ultimo + 1) % CAP == primeiro) erro();
+    array[ultimo] = x;
+    ultimo = (ultimo + 1) % CAP;
+}
+int remover(void) {
+    if (primeiro == ultimo) erro();
+    int x = array[primeiro];
+    primeiro = (primeiro + 1) % CAP;
+    return x;
+}
+void mostrar(void) {
+    for (int i = primeiro; i != ultimo; i = (i + 1) % CAP)
+        imprimir(array[i]);
+    linha();
+}
+
+int main(void) {
+    inserir(10); inserir(20); inserir(30);
+    imprimir(remover()); linha(); // 10
+    inserir(40);
+    mostrar(); // 20 30 40
+    return 0;
+}
+</code></pre></div><div data-code="java" hidden><p>Programa independente · Main.java</p><pre><code>public class Main {
+static final int CAP = 100;
+static void erro() {
+    throw new IllegalStateException(&quot;Operacao invalida&quot;);
+}
+static void imprimir(int x) { System.out.print(x + &quot; &quot;); }
+static void linha() { System.out.println(); }
+static int[] array = new int[CAP];
+static int primeiro = 0, ultimo = 0;
+static void inserir(int x) {
+    if ((ultimo + 1) % CAP == primeiro) erro();
+    array[ultimo] = x;
+    ultimo = (ultimo + 1) % CAP;
+}
+static int remover() {
+    if (primeiro == ultimo) erro();
+    int x = array[primeiro];
+    primeiro = (primeiro + 1) % CAP;
+    return x;
+}
+static void mostrar() {
+    for (int i = primeiro; i != ultimo; i = (i + 1) % CAP)
+        imprimir(array[i]);
+    linha();
+}
+
+public static void main(String[] args) {
+    inserir(10); inserir(20); inserir(30);
+    imprimir(remover()); linha(); // 10
+    inserir(40);
+    mostrar(); // 20 30 40
+}
+}
+</code></pre></div></div></details><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t9"><summary><span class="topic-num">10</span><span class="summary-label">Cabeça, células e ponteiros</span></summary><div class="content"><p><b>Cabeça é uma célula auxiliar. Não conta como dado.</b> Primeiro dado = primeiro.prox (Java) ou primeiro-&gt;prox (C). Em lista/fila com cabeça, vazio significa primeiro == ultimo.</p><div class="table"><table><thead><tr><th>Java</th><th>C</th></tr></thead><tbody><tr><td>Celula p</td><td>Celula *p</td></tr><tr><td>p.prox</td><td>p-&gt;prox</td></tr><tr><td>p.elemento</td><td>p-&gt;elemento</td></tr><tr><td>null</td><td>NULL</td></tr><tr><td>new Celula(x)</td><td>malloc + inicialização</td></tr><tr><td>Coleta automática</td><td>free ao liberar a célula</td></tr></tbody></table></div><p>p = p.prox muda para qual célula p aponta; não move a célula. p.prox = q muda a ligação dentro de p. Guardar um valor e guardar uma referência são coisas diferentes.</p><p><b>Lista simples:</b> só prox. <b>Lista dupla:</b> prox e ant. <b>Fila:</b> entra pelo final, sai pelo início. <b>Pilha:</b> entra e sai pelo topo. Ordenar uma fila altera a ordem FIFO original.</p><div class="sim" data-sim="simple"></div><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t10"><summary><span class="topic-num">11</span><span class="summary-label">Pilha encadeada sem cabeça</span></summary><div class="content"><p>topo aponta para o último inserido. Vazia: topo == NULL/null. Inserção e remoção O(1).</p><div class="sim" data-sim="stacklink"></div><details><summary>Códigos completos · C / Java</summary><div class="program"><div class="tabs"><button data-lang="c" aria-pressed="true">C</button><button data-lang="java" aria-pressed="false">Java</button><button data-copy>Copiar código</button></div><div data-code="c" ><p>Programa independente · programa.c</p><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define CAP 100
+
+void erro(void) {
+    fprintf(stderr, &quot;Operacao invalida ou sem memoria\n&quot;);
+    exit(EXIT_FAILURE);
+}
+void imprimir(int x) { printf(&quot;%d &quot;, x); }
+void linha(void) { printf(&quot;\n&quot;); }
+
+typedef struct Celula {
+    int elemento;
+    struct Celula *prox;
+} Celula;
+Celula *topo = NULL;
+
+Celula *novaCelula(int x) {
+    Celula *p = malloc(sizeof(Celula));
+    if (p == NULL) erro();
+    p-&gt;elemento = x;
+    p-&gt;prox = NULL;
+    return p;
+}
+void inserir(int x) {
+    Celula *nova = novaCelula(x);
+    nova-&gt;prox = topo;
+    topo = nova;
+}
+int remover(void) {
+    if (topo == NULL) erro();
+    Celula *retirada = topo;
+    int x = retirada-&gt;elemento;
+    topo = retirada-&gt;prox;
+    free(retirada);
+    return x;
+}
+void mostrar(void) {
+    for (Celula *i = topo; i != NULL; i = i-&gt;prox)
+        imprimir(i-&gt;elemento);
+    linha();
+}
+void liberar(void) {
+    while (topo != NULL) remover();
+}
+
+int main(void) {
+    inserir(10); inserir(20); inserir(30);
+    imprimir(remover()); linha(); // 30
+    mostrar(); // 20 10
+    liberar();
+    return 0;
+}
+</code></pre></div><div data-code="java" hidden><p>Programa independente · Main.java</p><pre><code>public class Main {
+static final int CAP = 100;
+static void erro() {
+    throw new IllegalStateException(&quot;Operacao invalida&quot;);
+}
+static void imprimir(int x) { System.out.print(x + &quot; &quot;); }
+static void linha() { System.out.println(); }
+static class Celula {
+    int elemento;
+    Celula prox;
+    Celula(int x) { elemento = x; }
+}
+static Celula novaCelula(int x) {
+    return new Celula(x);
+}
+static Celula topo = null;
+static void inserir(int x) {
+    Celula nova = novaCelula(x);
+    nova.prox = topo;
+    topo = nova;
+}
+static int remover() {
+    if (topo == null) erro();
+    Celula retirada = topo;
+    int x = retirada.elemento;
+    topo = retirada.prox;
+    
+    return x;
+}
+static void mostrar() {
+    for (Celula i = topo; i != null; i = i.prox)
+        imprimir(i.elemento);
+    linha();
+}
+static void liberar() {
+    while (topo != null) remover();
+}
+
+public static void main(String[] args) {
+    inserir(10); inserir(20); inserir(30);
+    imprimir(remover()); linha(); // 30
+    mostrar(); // 20 10
+    liberar();
+}
+}
+</code></pre></div></div></details><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t11"><summary><span class="topic-num">12</span><span class="summary-label">Fila encadeada com cabeça</span></summary><div class="content"><p>A remoção avança a cabeça: a célula do dado removido vira a nova cabeça. O valor dela deixa de contar. Em C, libera a cabeça antiga, não a nova. Inserção/remoção O(1).</p><div class="sim" data-sim="queuehead"></div><details><summary>Códigos completos · C / Java</summary><div class="program"><div class="tabs"><button data-lang="c" aria-pressed="true">C</button><button data-lang="java" aria-pressed="false">Java</button><button data-copy>Copiar código</button></div><div data-code="c" ><p>Programa independente · programa.c</p><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define CAP 100
+
+void erro(void) {
+    fprintf(stderr, &quot;Operacao invalida ou sem memoria\n&quot;);
+    exit(EXIT_FAILURE);
+}
+void imprimir(int x) { printf(&quot;%d &quot;, x); }
+void linha(void) { printf(&quot;\n&quot;); }
+
+typedef struct Celula {
+    int elemento;
+    struct Celula *prox;
+} Celula;
+Celula *primeiro, *ultimo;
+
+Celula *novaCelula(int x) {
+    Celula *p = malloc(sizeof(Celula));
+    if (p == NULL) erro();
+    p-&gt;elemento = x;
+    p-&gt;prox = NULL;
+    return p;
+}
+void iniciar(void) {
+    primeiro = novaCelula(0);
+    ultimo = primeiro;
+}
+void inserir(int x) {
+    ultimo-&gt;prox = novaCelula(x);
+    ultimo = ultimo-&gt;prox;
+}
+int remover(void) {
+    if (primeiro == ultimo) erro();
+    Celula *antiga = primeiro;
+    primeiro = primeiro-&gt;prox;
+    int x = primeiro-&gt;elemento;
+    antiga-&gt;prox = NULL;
+    free(antiga);
+    return x;
+}
+void mostrar(void) {
+    for (Celula *i = primeiro-&gt;prox; i != NULL; i = i-&gt;prox)
+        imprimir(i-&gt;elemento);
+    linha();
+}
+void liberar(void) {
+    while (primeiro != ultimo) remover();
+    free(primeiro);
+    primeiro = ultimo = NULL;
+}
+
+int main(void) {
+    iniciar();
+    inserir(10); inserir(20); inserir(30);
+    imprimir(remover()); linha(); // 10
+    mostrar(); // 20 30
+    liberar();
+    return 0;
+}
+</code></pre></div><div data-code="java" hidden><p>Programa independente · Main.java</p><pre><code>public class Main {
+static final int CAP = 100;
+static void erro() {
+    throw new IllegalStateException(&quot;Operacao invalida&quot;);
+}
+static void imprimir(int x) { System.out.print(x + &quot; &quot;); }
+static void linha() { System.out.println(); }
+static class Celula {
+    int elemento;
+    Celula prox;
+    Celula(int x) { elemento = x; }
+}
+static Celula novaCelula(int x) {
+    return new Celula(x);
+}
+static Celula primeiro, ultimo;
+static void iniciar() {
+    primeiro = novaCelula(0);
+    ultimo = primeiro;
+}
+static void inserir(int x) {
+    ultimo.prox = novaCelula(x);
+    ultimo = ultimo.prox;
+}
+static int remover() {
+    if (primeiro == ultimo) erro();
+    Celula antiga = primeiro;
+    primeiro = primeiro.prox;
+    int x = primeiro.elemento;
+    antiga.prox = null;
+    
+    return x;
+}
+static void mostrar() {
+    for (Celula i = primeiro.prox; i != null; i = i.prox)
+        imprimir(i.elemento);
+    linha();
+}
+static void liberar() {
+    while (primeiro != ultimo) remover();
+    
+    primeiro = ultimo = null;
+}
+
+public static void main(String[] args) {
+    iniciar();
+    inserir(10); inserir(20); inserir(30);
+    imprimir(remover()); linha(); // 10
+    mostrar(); // 20 30
+    liberar();
+}
+}
+</code></pre></div></div></details><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t12"><summary><span class="topic-num">13</span><span class="summary-label">Lista simples COMPLETA + ordenações</span></summary><div class="content"><p>Cabeça fixa nesta lista. Inclui inserir início/fim/posição, remover início/fim/posição, mostrar, liberar, inserirOrdenado, Selection, Bubble, Insertion e Shellsort.</p><p><b>Inserção ordenada ≠ Insertion Sort:</b> inserirOrdenado exige que a lista já esteja ordenada; insercao organiza uma lista desordenada. As ordenações alteram valores, não ligações. Selection/Bubble/Insertion são adaptações nossas e usam apenas prox.</p><p><b>Shellsort:</b> solução didática do exercício da página 37 de Lista Dupla (o enunciado pede lista simples). Usa acesso por posição com percurso, portanto é menos eficiente que o acesso direto de um vetor. Não atribua a ele automaticamente o custo do Shellsort em vetor.</p><div class="sim" data-sim="simple"></div><details><summary>Códigos completos · C / Java</summary><div class="program"><div class="tabs"><button data-lang="c" aria-pressed="true">C</button><button data-lang="java" aria-pressed="false">Java</button><button data-copy>Copiar código</button></div><div data-code="c" ><p>Programa independente · programa.c</p><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define CAP 100
+
+void erro(void) {
+    fprintf(stderr, &quot;Operacao invalida ou sem memoria\n&quot;);
+    exit(EXIT_FAILURE);
+}
+void imprimir(int x) { printf(&quot;%d &quot;, x); }
+void linha(void) { printf(&quot;\n&quot;); }
+
+typedef struct Celula {
+    int elemento;
+    struct Celula *prox;
+} Celula;
+Celula *primeiro, *ultimo;
+int n;
+
+Celula *novaCelula(int x) {
+    Celula *p = malloc(sizeof(Celula));
+    if (p == NULL) erro();
+    p-&gt;elemento = x;
+    p-&gt;prox = NULL;
+    return p;
+}
+void iniciar(void) {
+    primeiro = novaCelula(0);
+    ultimo = primeiro;
+    n = 0;
+}
+Celula *naPosicao(int pos) {
+    if (pos &lt; 0 || pos &gt;= n) erro();
+    Celula *p = primeiro-&gt;prox;
+    for (int k = 0; k &lt; pos; k++) p = p-&gt;prox;
+    return p;
+}
+void mostrar(void) {
+    for (Celula *i = primeiro-&gt;prox; i != NULL; i = i-&gt;prox)
+        imprimir(i-&gt;elemento);
+    linha();
+}
+void liberar(void) {
+    Celula *p = primeiro;
+    while (p != NULL) {
+        Celula *proxima = p-&gt;prox;
+        free(p);
+        p = proxima;
+    }
+    primeiro = ultimo = NULL;
+    n = 0;
+}
+void swap(Celula *a, Celula *b) {
+    int tmp = a-&gt;elemento;
+    a-&gt;elemento = b-&gt;elemento;
+    b-&gt;elemento = tmp;
+}
+void selecao(void) {
+    for (Celula *i = primeiro-&gt;prox; i != NULL; i = i-&gt;prox) {
+        Celula *menor = i;
+        for (Celula *j = i-&gt;prox; j != NULL; j = j-&gt;prox)
+            if (j-&gt;elemento &lt; menor-&gt;elemento) menor = j;
+        swap(i, menor);
+    }
+}
+// Bubble com fronteira atualizada pelo ultimo par visitado.
+// Funciona tambem sem ant.
+void bolha(void) {
+    if (n &lt; 2) return;
+    Celula *fim = NULL;
+    while (primeiro-&gt;prox-&gt;prox != fim) {
+        Celula *j = primeiro-&gt;prox;
+        while (j-&gt;prox != fim) {
+            if (j-&gt;elemento &gt; j-&gt;prox-&gt;elemento)
+                swap(j, j-&gt;prox);
+            j = j-&gt;prox;
+        }
+        fim = j;
+    }
+}
+void inserir(int x, int pos) {
+    if (pos &lt; 0 || pos &gt; n) erro();
+    Celula *a = primeiro;
+    for (int k = 0; k &lt; pos; k++) a = a-&gt;prox;
+    Celula *nova = novaCelula(x);
+    nova-&gt;prox = a-&gt;prox;
+    a-&gt;prox = nova;
+    if (a == ultimo) ultimo = nova;
+    n++;
+}
+void inserirInicio(int x) { inserir(x, 0); }
+void inserirFim(int x) {
+    ultimo-&gt;prox = novaCelula(x);
+    ultimo = ultimo-&gt;prox;
+    n++;
+}
+int remover(int pos) {
+    if (pos &lt; 0 || pos &gt;= n) erro();
+    Celula *a = primeiro;
+    for (int k = 0; k &lt; pos; k++) a = a-&gt;prox;
+    Celula *retirada = a-&gt;prox;
+    int x = retirada-&gt;elemento;
+    a-&gt;prox = retirada-&gt;prox;
+    if (retirada == ultimo) ultimo = a;
+    free(retirada);
+    n--;
+    return x;
+}
+int removerInicio(void) { return remover(0); }
+int removerFim(void) { return remover(n - 1); }
+// Exige lista previamente ordenada.
+void inserirOrdenado(int x) {
+    Celula *a = primeiro;
+    while (a-&gt;prox != NULL &amp;&amp; a-&gt;prox-&gt;elemento &lt; x)
+        a = a-&gt;prox;
+    Celula *nova = novaCelula(x);
+    nova-&gt;prox = a-&gt;prox;
+    a-&gt;prox = nova;
+    if (a == ultimo) ultimo = nova;
+    n++;
+}
+// Insertion na simples: varre o prefixo pela frente.
+// Rotaciona os valores para inserir tmp; nao usa ant.
+void insercao(void) {
+    if (n &lt; 2) return;
+    for (Celula *i = primeiro-&gt;prox-&gt;prox;
+         i != NULL; i = i-&gt;prox) {
+        int tmp = i-&gt;elemento;
+        Celula *p = primeiro-&gt;prox;
+        while (p != i &amp;&amp; p-&gt;elemento &lt;= tmp)
+            p = p-&gt;prox;
+        while (p != i) {
+            int guardado = p-&gt;elemento;
+            p-&gt;elemento = tmp;
+            tmp = guardado;
+            p = p-&gt;prox;
+        }
+        i-&gt;elemento = tmp;
+    }
+}
+// Resolucao didatica do Shellsort na lista simples.
+// naPosicao percorre celulas: nao e acesso O(1).
+void shellsort(void) {
+    if (n &lt; 2) return;
+    int h = 1;
+    do { h = 3*h + 1; } while (h &lt; n);
+    do {
+        h /= 3;
+        for (int cor = 0; cor &lt; h; cor++) {
+            for (int i = cor + h; i &lt; n; i += h) {
+                int tmp = naPosicao(i)-&gt;elemento;
+                int j = i - h;
+                while (j &gt;= 0 &amp;&amp; naPosicao(j)-&gt;elemento &gt; tmp) {
+                    naPosicao(j + h)-&gt;elemento = naPosicao(j)-&gt;elemento;
+                    j -= h;
+                }
+                naPosicao(j + h)-&gt;elemento = tmp;
+            }
+        }
+    } while (h != 1);
+}
+
+int main(void) {
+    iniciar();
+    inserirFim(3); inserirFim(4);
+    inserirFim(1); inserirFim(5);
+    mostrar(); // 3 4 1 5
+    insercao(); // Ou selecao(), bolha(), shellsort().
+    mostrar(); // 1 3 4 5
+    inserirOrdenado(2);
+    mostrar(); // 1 2 3 4 5
+    imprimir(removerInicio()); linha(); // 1
+    liberar();
+    return 0;
+}
+</code></pre></div><div data-code="java" hidden><p>Programa independente · Main.java</p><pre><code>public class Main {
+static final int CAP = 100;
+static void erro() {
+    throw new IllegalStateException(&quot;Operacao invalida&quot;);
+}
+static void imprimir(int x) { System.out.print(x + &quot; &quot;); }
+static void linha() { System.out.println(); }
+static class Celula {
+    int elemento;
+    Celula prox;
+    Celula(int x) { elemento = x; }
+}
+static Celula novaCelula(int x) {
+    return new Celula(x);
+}
+static Celula primeiro, ultimo;
+static int n;
+static void iniciar() {
+    primeiro = novaCelula(0);
+    ultimo = primeiro;
+    n = 0;
+}
+static Celula naPosicao(int pos) {
+    if (pos &lt; 0 || pos &gt;= n) erro();
+    Celula p = primeiro.prox;
+    for (int k = 0; k &lt; pos; k++) p = p.prox;
+    return p;
+}
+static void mostrar() {
+    for (Celula i = primeiro.prox; i != null; i = i.prox)
+        imprimir(i.elemento);
+    linha();
+}
+static void liberar() {
+    Celula p = primeiro;
+    while (p != null) {
+        Celula proxima = p.prox;
+        
+        p = proxima;
+    }
+    primeiro = ultimo = null;
+    n = 0;
+}
+static void swap(Celula a, Celula b) {
+    int tmp = a.elemento;
+    a.elemento = b.elemento;
+    b.elemento = tmp;
+}
+static void selecao() {
+    for (Celula i = primeiro.prox; i != null; i = i.prox) {
+        Celula menor = i;
+        for (Celula j = i.prox; j != null; j = j.prox)
+            if (j.elemento &lt; menor.elemento) menor = j;
+        swap(i, menor);
+    }
+}
+// Bubble com fronteira atualizada pelo ultimo par visitado.
+// Funciona tambem sem ant.
+static void bolha() {
+    if (n &lt; 2) return;
+    Celula fim = null;
+    while (primeiro.prox.prox != fim) {
+        Celula j = primeiro.prox;
+        while (j.prox != fim) {
+            if (j.elemento &gt; j.prox.elemento)
+                swap(j, j.prox);
+            j = j.prox;
+        }
+        fim = j;
+    }
+}
+static void inserir(int x, int pos) {
+    if (pos &lt; 0 || pos &gt; n) erro();
+    Celula a = primeiro;
+    for (int k = 0; k &lt; pos; k++) a = a.prox;
+    Celula nova = novaCelula(x);
+    nova.prox = a.prox;
+    a.prox = nova;
+    if (a == ultimo) ultimo = nova;
+    n++;
+}
+static void inserirInicio(int x) { inserir(x, 0); }
+static void inserirFim(int x) {
+    ultimo.prox = novaCelula(x);
+    ultimo = ultimo.prox;
+    n++;
+}
+static int remover(int pos) {
+    if (pos &lt; 0 || pos &gt;= n) erro();
+    Celula a = primeiro;
+    for (int k = 0; k &lt; pos; k++) a = a.prox;
+    Celula retirada = a.prox;
+    int x = retirada.elemento;
+    a.prox = retirada.prox;
+    if (retirada == ultimo) ultimo = a;
+    
+    n--;
+    return x;
+}
+static int removerInicio() { return remover(0); }
+static int removerFim() { return remover(n - 1); }
+// Exige lista previamente ordenada.
+static void inserirOrdenado(int x) {
+    Celula a = primeiro;
+    while (a.prox != null &amp;&amp; a.prox.elemento &lt; x)
+        a = a.prox;
+    Celula nova = novaCelula(x);
+    nova.prox = a.prox;
+    a.prox = nova;
+    if (a == ultimo) ultimo = nova;
+    n++;
+}
+// Insertion na simples: varre o prefixo pela frente.
+// Rotaciona os valores para inserir tmp; nao usa ant.
+static void insercao() {
+    if (n &lt; 2) return;
+    for (Celula i = primeiro.prox.prox;
+         i != null; i = i.prox) {
+        int tmp = i.elemento;
+        Celula p = primeiro.prox;
+        while (p != i &amp;&amp; p.elemento &lt;= tmp)
+            p = p.prox;
+        while (p != i) {
+            int guardado = p.elemento;
+            p.elemento = tmp;
+            tmp = guardado;
+            p = p.prox;
+        }
+        i.elemento = tmp;
+    }
+}
+// Resolucao didatica do Shellsort na lista simples.
+// naPosicao percorre celulas: nao e acesso O(1).
+static void shellsort() {
+    if (n &lt; 2) return;
+    int h = 1;
+    do { h = 3*h + 1; } while (h &lt; n);
+    do {
+        h /= 3;
+        for (int cor = 0; cor &lt; h; cor++) {
+            for (int i = cor + h; i &lt; n; i += h) {
+                int tmp = naPosicao(i).elemento;
+                int j = i - h;
+                while (j &gt;= 0 &amp;&amp; naPosicao(j).elemento &gt; tmp) {
+                    naPosicao(j + h).elemento = naPosicao(j).elemento;
+                    j -= h;
+                }
+                naPosicao(j + h).elemento = tmp;
+            }
+        }
+    } while (h != 1);
+}
+
+public static void main(String[] args) {
+    iniciar();
+    inserirFim(3); inserirFim(4);
+    inserirFim(1); inserirFim(5);
+    mostrar(); // 3 4 1 5
+    insercao(); // Ou selecao(), bolha(), shellsort().
+    mostrar(); // 1 3 4 5
+    inserirOrdenado(2);
+    mostrar(); // 1 2 3 4 5
+    imprimir(removerInicio()); linha(); // 1
+    liberar();
+}
+}
+</code></pre></div></div></details><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t13"><summary><span class="topic-num">14</span><span class="summary-label">Lista dupla COMPLETA + ordenações</span></summary><div class="content"><p>Cada célula tem ant e prox. Ao inserir/remover, atualize as duas direções. Cabeça fixa; nunca ordene nem remova a cabeça como dado.</p><p>Programa com todas as operações e Selection, Bubble, Insertion e Shellsort. Selection/Bubble/Insertion são adaptações nossas. Shellsort resolve o exercício da página 36; os saltos exigem percursos por células.</p><p>Inserção/remoção no final: O(1). Buscar uma posição: O(n). As três ordenações simples mostradas têm pior caso O(n²). O Insertion desta lista dupla tem melhor caso Θ(n); não confunda com o da simples, que varre o prefixo.</p><div class="sim" data-sim="double"></div><details><summary>Códigos completos · C / Java</summary><div class="program"><div class="tabs"><button data-lang="c" aria-pressed="true">C</button><button data-lang="java" aria-pressed="false">Java</button><button data-copy>Copiar código</button></div><div data-code="c" ><p>Programa independente · programa.c</p><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define CAP 100
+
+void erro(void) {
+    fprintf(stderr, &quot;Operacao invalida ou sem memoria\n&quot;);
+    exit(EXIT_FAILURE);
+}
+void imprimir(int x) { printf(&quot;%d &quot;, x); }
+void linha(void) { printf(&quot;\n&quot;); }
+
+typedef struct Celula {
+    int elemento;
+    struct Celula *prox, *ant;
+} Celula;
+Celula *primeiro, *ultimo;
+int n;
+
+Celula *novaCelula(int x) {
+    Celula *p = malloc(sizeof(Celula));
+    if (p == NULL) erro();
+    p-&gt;elemento = x;
+    p-&gt;prox = p-&gt;ant = NULL;
+    return p;
+}
+void iniciar(void) {
+    primeiro = novaCelula(0);
+    ultimo = primeiro;
+    n = 0;
+}
+Celula *naPosicao(int pos) {
+    if (pos &lt; 0 || pos &gt;= n) erro();
+    Celula *p = primeiro-&gt;prox;
+    for (int k = 0; k &lt; pos; k++) p = p-&gt;prox;
+    return p;
+}
+void mostrar(void) {
+    for (Celula *i = primeiro-&gt;prox; i != NULL; i = i-&gt;prox)
+        imprimir(i-&gt;elemento);
+    linha();
+}
+void liberar(void) {
+    Celula *p = primeiro;
+    while (p != NULL) {
+        Celula *proxima = p-&gt;prox;
+        free(p);
+        p = proxima;
+    }
+    primeiro = ultimo = NULL;
+    n = 0;
+}
+void swap(Celula *a, Celula *b) {
+    int tmp = a-&gt;elemento;
+    a-&gt;elemento = b-&gt;elemento;
+    b-&gt;elemento = tmp;
+}
+void selecao(void) {
+    for (Celula *i = primeiro-&gt;prox; i != NULL; i = i-&gt;prox) {
+        Celula *menor = i;
+        for (Celula *j = i-&gt;prox; j != NULL; j = j-&gt;prox)
+            if (j-&gt;elemento &lt; menor-&gt;elemento) menor = j;
+        swap(i, menor);
+    }
+}
+// Bubble com fronteira atualizada pelo ultimo par visitado.
+// Funciona tambem sem ant.
+void bolha(void) {
+    if (n &lt; 2) return;
+    Celula *fim = NULL;
+    while (primeiro-&gt;prox-&gt;prox != fim) {
+        Celula *j = primeiro-&gt;prox;
+        while (j-&gt;prox != fim) {
+            if (j-&gt;elemento &gt; j-&gt;prox-&gt;elemento)
+                swap(j, j-&gt;prox);
+            j = j-&gt;prox;
+        }
+        fim = j;
+    }
+}
+void inserir(int x, int pos) {
+    if (pos &lt; 0 || pos &gt; n) erro();
+    Celula *a = primeiro;
+    for (int k = 0; k &lt; pos; k++) a = a-&gt;prox;
+    Celula *nova = novaCelula(x);
+    nova-&gt;ant = a;
+    nova-&gt;prox = a-&gt;prox;
+    if (a-&gt;prox != NULL) a-&gt;prox-&gt;ant = nova;
+    else ultimo = nova;
+    a-&gt;prox = nova;
+    n++;
+}
+void inserirInicio(int x) { inserir(x, 0); }
+void inserirFim(int x) {
+    Celula *nova = novaCelula(x);
+    nova-&gt;ant = ultimo;
+    ultimo-&gt;prox = nova;
+    ultimo = nova;
+    n++;
+}
+int removerCelula(Celula *x) {
+    int valor = x-&gt;elemento;
+    x-&gt;ant-&gt;prox = x-&gt;prox;
+    if (x-&gt;prox != NULL) x-&gt;prox-&gt;ant = x-&gt;ant;
+    else ultimo = x-&gt;ant;
+    free(x);
+    n--;
+    return valor;
+}
+int remover(int pos) { return removerCelula(naPosicao(pos)); }
+int removerInicio(void) {
+    if (n == 0) erro();
+    return removerCelula(primeiro-&gt;prox);
+}
+int removerFim(void) {
+    if (n == 0) erro();
+    return removerCelula(ultimo);
+}
+// Exige lista previamente ordenada.
+void inserirOrdenado(int x) {
+    Celula *a = primeiro;
+    while (a-&gt;prox != NULL &amp;&amp; a-&gt;prox-&gt;elemento &lt; x)
+        a = a-&gt;prox;
+    Celula *nova = novaCelula(x);
+    nova-&gt;ant = a;
+    nova-&gt;prox = a-&gt;prox;
+    if (a-&gt;prox != NULL) a-&gt;prox-&gt;ant = nova;
+    else ultimo = nova;
+    a-&gt;prox = nova;
+    n++;
+}
+void insercao(void) {
+    if (n &lt; 2) return;
+    for (Celula *i = primeiro-&gt;prox-&gt;prox;
+         i != NULL; i = i-&gt;prox) {
+        int tmp = i-&gt;elemento;
+        Celula *j = i-&gt;ant;
+        while (j != primeiro &amp;&amp; j-&gt;elemento &gt; tmp) {
+            j-&gt;prox-&gt;elemento = j-&gt;elemento;
+            j = j-&gt;ant;
+        }
+        j-&gt;prox-&gt;elemento = tmp;
+    }
+}
+Celula *avancar(Celula *p, int h) {
+    while (p != NULL &amp;&amp; h &gt; 0) { p = p-&gt;prox; h--; }
+    return p;
+}
+Celula *recuar(Celula *p, int h) {
+    while (p != NULL &amp;&amp; h &gt; 0) { p = p-&gt;ant; h--; }
+    if (p == primeiro) return NULL;
+    return p;
+}
+void shellsort(void) {
+    if (n &lt; 2) return;
+    int h = 1;
+    do { h = 3*h + 1; } while (h &lt; n);
+    do {
+        h /= 3;
+        for (int cor = 0; cor &lt; h; cor++) {
+            Celula *inicio = avancar(primeiro-&gt;prox, cor);
+            for (Celula *i = avancar(inicio, h);
+                 i != NULL; i = avancar(i, h)) {
+                int tmp = i-&gt;elemento;
+                Celula *destino = i;
+                Celula *j = recuar(i, h);
+                while (j != NULL &amp;&amp; j-&gt;elemento &gt; tmp) {
+                    destino-&gt;elemento = j-&gt;elemento;
+                    destino = j;
+                    j = recuar(j, h);
+                }
+                destino-&gt;elemento = tmp;
+            }
+        }
+    } while (h != 1);
+}
+void mostrarReverso(void) {
+    for (Celula *i = ultimo; i != primeiro; i = i-&gt;ant)
+        imprimir(i-&gt;elemento);
+    linha();
+}
+
+int main(void) {
+    iniciar();
+    inserirFim(3); inserirFim(4);
+    inserirFim(1); inserirFim(5);
+    mostrar(); // 3 4 1 5
+    insercao(); // Ou selecao(), bolha(), shellsort().
+    mostrar(); // 1 3 4 5
+    inserirOrdenado(2);
+    mostrar(); // 1 2 3 4 5
+    imprimir(removerInicio()); linha(); // 1
+    mostrarReverso(); // 5 4 3 2
+    liberar();
+    return 0;
+}
+</code></pre></div><div data-code="java" hidden><p>Programa independente · Main.java</p><pre><code>public class Main {
+static final int CAP = 100;
+static void erro() {
+    throw new IllegalStateException(&quot;Operacao invalida&quot;);
+}
+static void imprimir(int x) { System.out.print(x + &quot; &quot;); }
+static void linha() { System.out.println(); }
+static class Celula {
+    int elemento;
+    Celula prox, ant;
+    Celula(int x) { elemento = x; }
+}
+static Celula novaCelula(int x) {
+    return new Celula(x);
+}
+static Celula primeiro, ultimo;
+static int n;
+static void iniciar() {
+    primeiro = novaCelula(0);
+    ultimo = primeiro;
+    n = 0;
+}
+static Celula naPosicao(int pos) {
+    if (pos &lt; 0 || pos &gt;= n) erro();
+    Celula p = primeiro.prox;
+    for (int k = 0; k &lt; pos; k++) p = p.prox;
+    return p;
+}
+static void mostrar() {
+    for (Celula i = primeiro.prox; i != null; i = i.prox)
+        imprimir(i.elemento);
+    linha();
+}
+static void liberar() {
+    Celula p = primeiro;
+    while (p != null) {
+        Celula proxima = p.prox;
+        
+        p = proxima;
+    }
+    primeiro = ultimo = null;
+    n = 0;
+}
+static void swap(Celula a, Celula b) {
+    int tmp = a.elemento;
+    a.elemento = b.elemento;
+    b.elemento = tmp;
+}
+static void selecao() {
+    for (Celula i = primeiro.prox; i != null; i = i.prox) {
+        Celula menor = i;
+        for (Celula j = i.prox; j != null; j = j.prox)
+            if (j.elemento &lt; menor.elemento) menor = j;
+        swap(i, menor);
+    }
+}
+// Bubble com fronteira atualizada pelo ultimo par visitado.
+// Funciona tambem sem ant.
+static void bolha() {
+    if (n &lt; 2) return;
+    Celula fim = null;
+    while (primeiro.prox.prox != fim) {
+        Celula j = primeiro.prox;
+        while (j.prox != fim) {
+            if (j.elemento &gt; j.prox.elemento)
+                swap(j, j.prox);
+            j = j.prox;
+        }
+        fim = j;
+    }
+}
+static void inserir(int x, int pos) {
+    if (pos &lt; 0 || pos &gt; n) erro();
+    Celula a = primeiro;
+    for (int k = 0; k &lt; pos; k++) a = a.prox;
+    Celula nova = novaCelula(x);
+    nova.ant = a;
+    nova.prox = a.prox;
+    if (a.prox != null) a.prox.ant = nova;
+    else ultimo = nova;
+    a.prox = nova;
+    n++;
+}
+static void inserirInicio(int x) { inserir(x, 0); }
+static void inserirFim(int x) {
+    Celula nova = novaCelula(x);
+    nova.ant = ultimo;
+    ultimo.prox = nova;
+    ultimo = nova;
+    n++;
+}
+static int removerCelula(Celula x) {
+    int valor = x.elemento;
+    x.ant.prox = x.prox;
+    if (x.prox != null) x.prox.ant = x.ant;
+    else ultimo = x.ant;
+    
+    n--;
+    return valor;
+}
+static int remover(int pos) { return removerCelula(naPosicao(pos)); }
+static int removerInicio() {
+    if (n == 0) erro();
+    return removerCelula(primeiro.prox);
+}
+static int removerFim() {
+    if (n == 0) erro();
+    return removerCelula(ultimo);
+}
+// Exige lista previamente ordenada.
+static void inserirOrdenado(int x) {
+    Celula a = primeiro;
+    while (a.prox != null &amp;&amp; a.prox.elemento &lt; x)
+        a = a.prox;
+    Celula nova = novaCelula(x);
+    nova.ant = a;
+    nova.prox = a.prox;
+    if (a.prox != null) a.prox.ant = nova;
+    else ultimo = nova;
+    a.prox = nova;
+    n++;
+}
+static void insercao() {
+    if (n &lt; 2) return;
+    for (Celula i = primeiro.prox.prox;
+         i != null; i = i.prox) {
+        int tmp = i.elemento;
+        Celula j = i.ant;
+        while (j != primeiro &amp;&amp; j.elemento &gt; tmp) {
+            j.prox.elemento = j.elemento;
+            j = j.ant;
+        }
+        j.prox.elemento = tmp;
+    }
+}
+static Celula avancar(Celula p, int h) {
+    while (p != null &amp;&amp; h &gt; 0) { p = p.prox; h--; }
+    return p;
+}
+static Celula recuar(Celula p, int h) {
+    while (p != null &amp;&amp; h &gt; 0) { p = p.ant; h--; }
+    if (p == primeiro) return null;
+    return p;
+}
+static void shellsort() {
+    if (n &lt; 2) return;
+    int h = 1;
+    do { h = 3*h + 1; } while (h &lt; n);
+    do {
+        h /= 3;
+        for (int cor = 0; cor &lt; h; cor++) {
+            Celula inicio = avancar(primeiro.prox, cor);
+            for (Celula i = avancar(inicio, h);
+                 i != null; i = avancar(i, h)) {
+                int tmp = i.elemento;
+                Celula destino = i;
+                Celula j = recuar(i, h);
+                while (j != null &amp;&amp; j.elemento &gt; tmp) {
+                    destino.elemento = j.elemento;
+                    destino = j;
+                    j = recuar(j, h);
+                }
+                destino.elemento = tmp;
+            }
+        }
+    } while (h != 1);
+}
+static void mostrarReverso() {
+    for (Celula i = ultimo; i != primeiro; i = i.ant)
+        imprimir(i.elemento);
+    linha();
+}
+
+public static void main(String[] args) {
+    iniciar();
+    inserirFim(3); inserirFim(4);
+    inserirFim(1); inserirFim(5);
+    mostrar(); // 3 4 1 5
+    insercao(); // Ou selecao(), bolha(), shellsort().
+    mostrar(); // 1 3 4 5
+    inserirOrdenado(2);
+    mostrar(); // 1 2 3 4 5
+    imprimir(removerInicio()); linha(); // 1
+    mostrarReverso(); // 5 4 3 2
+    liberar();
+}
+}
+</code></pre></div></div></details><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t14"><summary><span class="topic-num">15</span><span class="summary-label">Ordenações em vetor — programa completo</span></summary><div class="content"><p>Escolha a chamada no main. Selection, Bubble, Insertion e Shell preservam a lógica e nomenclatura estudadas no material. Os demais são versões independentes didáticas. Heap aqui usa índices desde zero; Counting simples restringe valores a 0…99; Radix usa valores não negativos.</p><div class="table"><table><thead><tr><th>Método</th><th>Memorize</th><th>Tempo</th></tr></thead><tbody><tr><td>Selection</td><td>Procura menor, depois swap</td><td>Θ(n²)</td></tr><tr><td>Bubble</td><td>Troca vizinhos durante o percurso</td><td>Θ(n²), sem parada antecipada</td></tr><tr><td>Insertion</td><td>Guarda, desloca, encaixa</td><td>Melhor Θ(n); pior Θ(n²)</td></tr><tr><td>Shell</td><td>Inserção com saltos 3h+1</td><td>Depende dos saltos</td></tr><tr><td>Quick</td><td>Pivô, partição, recursão</td><td>Médio Θ(n log n); pior Θ(n²)</td></tr><tr><td>Merge</td><td>Divide, ordena, intercala</td><td>Θ(n log n)</td></tr><tr><td>Heap</td><td>Maior na raiz; leva ao final</td><td>Pior Θ(n log n)</td></tr><tr><td>Counting</td><td>Conta ocorrências</td><td>Θ(n+k), k = intervalo</td></tr><tr><td>Radix</td><td>Ordena dígitos com estabilidade</td><td>Θ(d(n+b))</td></tr></tbody></table></div><p>As visualizações abaixo permitem acompanhar as mudanças passo a passo. Não confunda trocar valores com trocar as ligações das células.</p><div class="sim" data-sim="sort"></div><details><summary>Códigos completos · C / Java</summary><div class="program"><div class="tabs"><button data-lang="c" aria-pressed="true">C</button><button data-lang="java" aria-pressed="false">Java</button><button data-copy>Copiar código</button></div><div data-code="c" ><p>Programa independente · programa.c</p><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define CAP 100
+
+void erro(void) {
+    fprintf(stderr, &quot;Operacao invalida ou sem memoria\n&quot;);
+    exit(EXIT_FAILURE);
+}
+void imprimir(int x) { printf(&quot;%d &quot;, x); }
+void linha(void) { printf(&quot;\n&quot;); }
+
+int array[CAP];
+int aux[CAP];
+int n;
+
+void swap(int a, int b) {
+    int tmp = array[a]; array[a] = array[b]; array[b] = tmp;
+}
+void selecao(void) {
+    for (int i = 0; i &lt; n - 1; i++) {
+        int menor = i;
+        for (int j = i + 1; j &lt; n; j++)
+            if (array[menor] &gt; array[j]) menor = j;
+        swap(menor, i);
+    }
+}
+void bolha(void) {
+    for (int i = n - 1; i &gt; 0; i--)
+        for (int j = 0; j &lt; i; j++)
+            if (array[j] &gt; array[j + 1]) swap(j, j + 1);
+}
+void insercao(void) {
+    for (int i = 1; i &lt; n; i++) {
+        int tmp = array[i], j = i - 1;
+        while (j &gt;= 0 &amp;&amp; array[j] &gt; tmp) {
+            array[j + 1] = array[j]; j--;
+        }
+        array[j + 1] = tmp;
+    }
+}
+void insercaoPorCor(int cor, int h) {
+    for (int i = cor + h; i &lt; n; i += h) {
+        int tmp = array[i], j = i - h;
+        while (j &gt;= 0 &amp;&amp; array[j] &gt; tmp) {
+            array[j + h] = array[j]; j -= h;
+        }
+        array[j + h] = tmp;
+    }
+}
+void shellsort(void) {
+    if (n &lt; 2) return;
+    int h = 1;
+    do { h = 3*h + 1; } while (h &lt; n);
+    do {
+        h /= 3;
+        for (int cor = 0; cor &lt; h; cor++) insercaoPorCor(cor, h);
+    } while (h != 1);
+}
+void quicksort(int esq, int dir) {
+    if (esq &gt;= dir) return;
+    int i = esq, j = dir;
+    int pivo = array[esq + (dir - esq)/2];
+    while (i &lt;= j) {
+        while (array[i] &lt; pivo) i++;
+        while (array[j] &gt; pivo) j--;
+        if (i &lt;= j) { swap(i, j); i++; j--; }
+    }
+    quicksort(esq, j); quicksort(i, dir);
+}
+void mergesort(int esq, int dir) {
+    if (esq &gt;= dir) return;
+    int m = esq + (dir - esq)/2;
+    mergesort(esq, m); mergesort(m + 1, dir);
+    int i = esq, j = m + 1, k = esq;
+    while (i &lt;= m &amp;&amp; j &lt;= dir) {
+        if (array[i] &lt;= array[j]) aux[k++] = array[i++];
+        else aux[k++] = array[j++];
+    }
+    while (i &lt;= m) aux[k++] = array[i++];
+    while (j &lt;= dir) aux[k++] = array[j++];
+    for (k = esq; k &lt;= dir; k++) array[k] = aux[k];
+}
+// Heap com indices comecando em ZERO nesta adaptacao.
+void descer(int tam, int i) {
+    int maior = i, e = 2*i + 1, d = 2*i + 2;
+    if (e &lt; tam &amp;&amp; array[e] &gt; array[maior]) maior = e;
+    if (d &lt; tam &amp;&amp; array[d] &gt; array[maior]) maior = d;
+    if (maior != i) { swap(i, maior); descer(tam, maior); }
+}
+void heapsort(void) {
+    for (int i = n/2 - 1; i &gt;= 0; i--) descer(n, i);
+    for (int fim = n - 1; fim &gt; 0; fim--) {
+        swap(0, fim); descer(fim, 0);
+    }
+}
+// Versao simples: valores inteiros de 0 ate CAP-1.
+void countingSort(void) {
+    int cont[CAP];
+    for (int i = 0; i &lt; CAP; i++) cont[i] = 0;
+    for (int i = 0; i &lt; n; i++) {
+        if (array[i] &lt; 0 || array[i] &gt;= CAP) erro();
+        cont[array[i]]++;
+    }
+    int pos = 0;
+    for (int valor = 0; valor &lt; CAP; valor++)
+        for (int q = 0; q &lt; cont[valor]; q++) array[pos++] = valor;
+}
+// Radix decimal: somente inteiros nao negativos.
+void radixsort(void) {
+    int maior = 0;
+    for (int i = 0; i &lt; n; i++) {
+        if (array[i] &lt; 0) erro();
+        if (array[i] &gt; maior) maior = array[i];
+    }
+    for (int div = 1; maior / div &gt; 0; ) {
+        int cont[CAP];
+        for (int d = 0; d &lt; 10; d++) cont[d] = 0;
+        for (int i = 0; i &lt; n; i++) cont[(array[i]/div)%10]++;
+        for (int d = 1; d &lt; 10; d++) cont[d] += cont[d-1];
+        // Da direita para a esquerda: mantem estabilidade.
+        for (int i = n - 1; i &gt;= 0; i--) {
+            int d = (array[i]/div)%10;
+            aux[--cont[d]] = array[i];
+        }
+        for (int i = 0; i &lt; n; i++) array[i] = aux[i];
+        if (div &gt; maior/10) break; // Evita overflow.
+        div *= 10;
+    }
+}
+void mostrar(void) {
+    for (int i = 0; i &lt; n; i++) imprimir(array[i]);
+    linha();
+}
+
+int main(void) {
+    n = 6;
+    array[0]=101; array[1]=115; array[2]=30;
+    array[3]=63; array[4]=47; array[5]=20;
+    shellsort();
+    // Alternativas: selecao(); bolha(); insercao();
+    // quicksort(0, n-1); mergesort(0, n-1);
+    // heapsort(); radixsort();
+    // countingSort(): antes use somente valores de 0 a 99.
+    mostrar(); // 20 30 47 63 101 115
+    return 0;
+}
+</code></pre></div><div data-code="java" hidden><p>Programa independente · Main.java</p><pre><code>public class Main {
+static final int CAP = 100;
+static void erro() {
+    throw new IllegalStateException(&quot;Operacao invalida&quot;);
+}
+static void imprimir(int x) { System.out.print(x + &quot; &quot;); }
+static void linha() { System.out.println(); }
+static int[] array = new int[CAP];
+static int[] aux = new int[CAP];
+static int n;
+static void swap(int a, int b) {
+    int tmp = array[a]; array[a] = array[b]; array[b] = tmp;
+}
+static void selecao() {
+    for (int i = 0; i &lt; n - 1; i++) {
+        int menor = i;
+        for (int j = i + 1; j &lt; n; j++)
+            if (array[menor] &gt; array[j]) menor = j;
+        swap(menor, i);
+    }
+}
+static void bolha() {
+    for (int i = n - 1; i &gt; 0; i--)
+        for (int j = 0; j &lt; i; j++)
+            if (array[j] &gt; array[j + 1]) swap(j, j + 1);
+}
+static void insercao() {
+    for (int i = 1; i &lt; n; i++) {
+        int tmp = array[i], j = i - 1;
+        while (j &gt;= 0 &amp;&amp; array[j] &gt; tmp) {
+            array[j + 1] = array[j]; j--;
+        }
+        array[j + 1] = tmp;
+    }
+}
+static void insercaoPorCor(int cor, int h) {
+    for (int i = cor + h; i &lt; n; i += h) {
+        int tmp = array[i], j = i - h;
+        while (j &gt;= 0 &amp;&amp; array[j] &gt; tmp) {
+            array[j + h] = array[j]; j -= h;
+        }
+        array[j + h] = tmp;
+    }
+}
+static void shellsort() {
+    if (n &lt; 2) return;
+    int h = 1;
+    do { h = 3*h + 1; } while (h &lt; n);
+    do {
+        h /= 3;
+        for (int cor = 0; cor &lt; h; cor++) insercaoPorCor(cor, h);
+    } while (h != 1);
+}
+static void quicksort(int esq, int dir) {
+    if (esq &gt;= dir) return;
+    int i = esq, j = dir;
+    int pivo = array[esq + (dir - esq)/2];
+    while (i &lt;= j) {
+        while (array[i] &lt; pivo) i++;
+        while (array[j] &gt; pivo) j--;
+        if (i &lt;= j) { swap(i, j); i++; j--; }
+    }
+    quicksort(esq, j); quicksort(i, dir);
+}
+static void mergesort(int esq, int dir) {
+    if (esq &gt;= dir) return;
+    int m = esq + (dir - esq)/2;
+    mergesort(esq, m); mergesort(m + 1, dir);
+    int i = esq, j = m + 1, k = esq;
+    while (i &lt;= m &amp;&amp; j &lt;= dir) {
+        if (array[i] &lt;= array[j]) aux[k++] = array[i++];
+        else aux[k++] = array[j++];
+    }
+    while (i &lt;= m) aux[k++] = array[i++];
+    while (j &lt;= dir) aux[k++] = array[j++];
+    for (k = esq; k &lt;= dir; k++) array[k] = aux[k];
+}
+// Heap com indices comecando em ZERO nesta adaptacao.
+static void descer(int tam, int i) {
+    int maior = i, e = 2*i + 1, d = 2*i + 2;
+    if (e &lt; tam &amp;&amp; array[e] &gt; array[maior]) maior = e;
+    if (d &lt; tam &amp;&amp; array[d] &gt; array[maior]) maior = d;
+    if (maior != i) { swap(i, maior); descer(tam, maior); }
+}
+static void heapsort() {
+    for (int i = n/2 - 1; i &gt;= 0; i--) descer(n, i);
+    for (int fim = n - 1; fim &gt; 0; fim--) {
+        swap(0, fim); descer(fim, 0);
+    }
+}
+// Versao simples: valores inteiros de 0 ate CAP-1.
+static void countingSort() {
+    int[] cont = new int[CAP];
+    for (int i = 0; i &lt; CAP; i++) cont[i] = 0;
+    for (int i = 0; i &lt; n; i++) {
+        if (array[i] &lt; 0 || array[i] &gt;= CAP) erro();
+        cont[array[i]]++;
+    }
+    int pos = 0;
+    for (int valor = 0; valor &lt; CAP; valor++)
+        for (int q = 0; q &lt; cont[valor]; q++) array[pos++] = valor;
+}
+// Radix decimal: somente inteiros nao negativos.
+static void radixsort() {
+    int maior = 0;
+    for (int i = 0; i &lt; n; i++) {
+        if (array[i] &lt; 0) erro();
+        if (array[i] &gt; maior) maior = array[i];
+    }
+    for (int div = 1; maior / div &gt; 0; ) {
+        int[] cont = new int[CAP];
+        for (int d = 0; d &lt; 10; d++) cont[d] = 0;
+        for (int i = 0; i &lt; n; i++) cont[(array[i]/div)%10]++;
+        for (int d = 1; d &lt; 10; d++) cont[d] += cont[d-1];
+        // Da direita para a esquerda: mantem estabilidade.
+        for (int i = n - 1; i &gt;= 0; i--) {
+            int d = (array[i]/div)%10;
+            aux[--cont[d]] = array[i];
+        }
+        for (int i = 0; i &lt; n; i++) array[i] = aux[i];
+        if (div &gt; maior/10) break; // Evita overflow.
+        div *= 10;
+    }
+}
+static void mostrar() {
+    for (int i = 0; i &lt; n; i++) imprimir(array[i]);
+    linha();
+}
+
+public static void main(String[] args) {
+    n = 6;
+    array[0]=101; array[1]=115; array[2]=30;
+    array[3]=63; array[4]=47; array[5]=20;
+    shellsort();
+    // Alternativas: selecao(); bolha(); insercao();
+    // quicksort(0, n-1); mergesort(0, n-1);
+    // heapsort(); radixsort();
+    // countingSort(): antes use somente valores de 0 a 99.
+    mostrar(); // 20 30 47 63 101 115
+}
+}
+</code></pre></div></div></details><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t15"><summary><span class="topic-num">16</span><span class="summary-label">Pesquisas e recursividade</span></summary><div class="content"><p>Sequencial retorna índice ou −1. Binária exige ordem crescente. Recursão: caso base + problema menor; cada chamada tem seus parâmetros. Soma/fatorial abaixo recebem n não negativo; fatorial limitado a 12 para caber em int de 32 bits.</p><div class="sim" data-sim="search"></div><details><summary>Códigos completos · C / Java</summary><div class="program"><div class="tabs"><button data-lang="c" aria-pressed="true">C</button><button data-lang="java" aria-pressed="false">Java</button><button data-copy>Copiar código</button></div><div data-code="c" ><p>Programa independente · programa.c</p><pre><code>#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define CAP 100
+
+void erro(void) {
+    fprintf(stderr, &quot;Operacao invalida ou sem memoria\n&quot;);
+    exit(EXIT_FAILURE);
+}
+void imprimir(int x) { printf(&quot;%d &quot;, x); }
+void linha(void) { printf(&quot;\n&quot;); }
+
+int array[CAP];
+int n;
+
+int sequencial(int x) {
+    for (int i = 0; i &lt; n; i++)
+        if (array[i] == x) return i;
+    return -1;
+}
+int binaria(int x) {
+    int esq = 0, dir = n - 1;
+    while (esq &lt;= dir) {
+        int m = esq + (dir - esq)/2;
+        if (array[m] == x) return m;
+        if (x &gt; array[m]) esq = m + 1;
+        else dir = m - 1;
+    }
+    return -1;
+}
+int soma(int n) {
+    if (n &lt; 0) erro();
+    if (n == 0) return 0;
+    return n + soma(n - 1);
+}
+int fatorial(int n) {
+    if (n &lt; 0 || n &gt; 12) erro();
+    if (n == 0) return 1;
+    return n * fatorial(n - 1);
+}
+
+int main(void) {
+    n = 4;
+    array[0]=2; array[1]=5; array[2]=8; array[3]=12;
+    imprimir(sequencial(8)); linha(); // 2
+    imprimir(binaria(12)); linha(); // 3
+    imprimir(soma(3)); linha(); // 6
+    imprimir(fatorial(4)); linha(); // 24
+    return 0;
+}
+</code></pre></div><div data-code="java" hidden><p>Programa independente · Main.java</p><pre><code>public class Main {
+static final int CAP = 100;
+static void erro() {
+    throw new IllegalStateException(&quot;Operacao invalida&quot;);
+}
+static void imprimir(int x) { System.out.print(x + &quot; &quot;); }
+static void linha() { System.out.println(); }
+static int[] array = new int[CAP];
+static int n;
+static int sequencial(int x) {
+    for (int i = 0; i &lt; n; i++)
+        if (array[i] == x) return i;
+    return -1;
+}
+static int binaria(int x) {
+    int esq = 0, dir = n - 1;
+    while (esq &lt;= dir) {
+        int m = esq + (dir - esq)/2;
+        if (array[m] == x) return m;
+        if (x &gt; array[m]) esq = m + 1;
+        else dir = m - 1;
+    }
+    return -1;
+}
+static int soma(int n) {
+    if (n &lt; 0) erro();
+    if (n == 0) return 0;
+    return n + soma(n - 1);
+}
+static int fatorial(int n) {
+    if (n &lt; 0 || n &gt; 12) erro();
+    if (n == 0) return 1;
+    return n * fatorial(n - 1);
+}
+
+public static void main(String[] args) {
+    n = 4;
+    array[0]=2; array[1]=5; array[2]=8; array[3]=12;
+    imprimir(sequencial(8)); linha(); // 2
+    imprimir(binaria(12)); linha(); // 3
+    imprimir(soma(3)); linha(); // 6
+    imprimir(fatorial(4)); linha(); // 24
+}
+}
+</code></pre></div></div></details><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="t16"><summary><span class="topic-num">17</span><span class="summary-label">Fontes e convenções</span></summary><div class="content"><p>Base: GitHub ICEI/PUC Minas. As questões abaixo são adaptações para múltipla escolha de exercícios e exemplos, não alternativas oficiais. Trechos e programas têm finalidade de revisão; as implementações independentes incluem verificações e exemplos de uso.</p><ul><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/listas/lista01.pdf" target="_blank" rel="noopener">Lista 1 — exercícios 1, 2, 5, 8–13</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/aulas/u01%20Fundamentos%20de%20An%C3%A1lise%20de%20Algoritmos/unidade01a-no%C3%A7%C3%B5es-complexidade.pdf" target="_blank" rel="noopener">Noções de complexidade — pp. 152–158</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/aulas/u01%20Fundamentos%20de%20An%C3%A1lise%20de%20Algoritmos/unidade01b2_somatorios_manipula%C3%A7%C3%A3o.pdf" target="_blank" rel="noopener">Manipulação de somas — Gauss, pp. 38–39</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/aulas/u01%20Fundamentos%20de%20An%C3%A1lise%20de%20Algoritmos/unidade01b3_somatorios_metodos.pdf" target="_blank" rel="noopener">Métodos e indução</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/aulas/u01%20Fundamentos%20de%20An%C3%A1lise%20de%20Algoritmos/unidade01a3_ordenacaoInterna_selecao.pdf" target="_blank" rel="noopener">Seleção — swap, p. 35</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/aulas/u03%20Ordena%C3%A7%C3%A3o%20em%20mem%C3%B3ria%20principal/unidade03a_ordenacaoInterna_bolha.pdf" target="_blank" rel="noopener">Bolha</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/aulas/u03%20Ordena%C3%A7%C3%A3o%20em%20mem%C3%B3ria%20principal/unidade03b_ordenacaoInterna_insercao.pdf" target="_blank" rel="noopener">Inserção — código, p. 49</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/fonte/u03%20Ordena%C3%A7%C3%A3o%20em%20mem%C3%B3ria%20principal/java/Shellsort.java" target="_blank" rel="noopener">Shellsort — código de apoio</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/aulas/u04%20Estruturas%20de%20dados%20b%C3%A1sicas%20flex%C3%ADveis/unidade04d_tadFlexivel_listasimples.pdf" target="_blank" rel="noopener">Lista simples — exercícios pp. 57–61</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/aulas/u04%20Estruturas%20de%20dados%20b%C3%A1sicas%20flex%C3%ADveis/unidade04e_tadFlexivel_listadupla.pdf" target="_blank" rel="noopener">Lista dupla — Shell/Quick, pp. 36–39</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/aulas/u02%20Estruturas%20de%20dados%20b%C3%A1sicas%20lineares/unidade02b_tadLinear_pilha.pdf" target="_blank" rel="noopener">Pilha em vetor</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/aulas/u02%20Estruturas%20de%20dados%20b%C3%A1sicas%20lineares/unidade02c_tadLinear_fila.pdf" target="_blank" rel="noopener">Fila em vetor e circular</a></li><li><a href="https://github.com/icei-pucminas/aeds2/blob/master/aulas/u04%20Estruturas%20de%20dados%20b%C3%A1sicas%20flex%C3%ADveis/unidade04c_tadFlexivel_fila.pdf" target="_blank" rel="noopener">Fila flexível</a></li></ul><p>Lista simples e dupla usam cabeça fixa. Fila flexível usa cabeça que avança na remoção. Fila circular reserva uma posição. Essas convenções diferentes são intencionais e estão explicadas nos respectivos tópicos.</p><a class="back" href="#menu">↑ Voltar ao menu</a></div></details><details class="topic" id="quiz"><summary><span class="topic-num">★</span><span class="summary-label">Teste seus conhecimentos</span></summary><div class="content"><p>20 questões divididas por matéria. Adaptações de exercícios e exemplos do material; não são alternativas oficiais.</p><p><b>Acertou:</b> avança automaticamente. <b>Errou:</b> mostra a resposta e a explicação; toque em “Entendi” para continuar. Ao terminar, você pode revisar todas as explicações.</p><div class="quiz-cats" id="quiz-cats"></div><div id="quiz-question"><p>Escolha uma matéria acima para começar.</p></div><a class="back" href="#menu">↑ Voltar ao menu</a></div></details></main><a class="float" href="#menu">↑ Menu</a><footer>Programas compilados e exemplos executados em C e Java. Nas listas, testes adicionais verificam ordem, elementos e ligações. Os resultados do quiz são locais a este navegador, quando o armazenamento local estiver disponível.</footer><script>const QUIZ=[{"cat": "Somatórios", "question": "Lista 1, 1(a): para n=3, quanto vale Σ(3i+4), com i de 0 até 3?", "options": ["18", "30", "34", "46"], "correct": 2, "explain": "Os termos são 4, 7, 10 e 13. A soma é 34. O zero conta como índice; 18 é somente 3Σi.", "hint": "Escreva o termo para cada índice, inclusive zero.", "source": "Lista 1, questão 1(a); adaptação numérica."}, {"cat": "Somatórios", "question": "Qual é a forma fechada de Σ(3i+4), para i=0…n?", "options": ["(3n²+11n+8)/2", "(3n²+5n)/2", "3n(n+1)/2+4n", "3n+4"], "correct": 0, "explain": "3Σi + 4Σ1 = 3n(n+1)/2 + 4(n+1) = (3n²+11n+8)/2. Há n+1 constantes 4.", "hint": "Separe a parte com i da constante.", "source": "Lista 1, questão 1(a)."}, {"cat": "Somatórios", "question": "Na indução de S(n)=Σ(3i+4), i=0…n, qual termo acrescentamos a S(k) para obter S(k+1)?", "options": ["3k+4", "2k+1", "k+1", "3k+7"], "correct": 3, "explain": "O novo índice é i=k+1. Substituir em 3i+4 dá 3(k+1)+4 = 3k+7.", "hint": "Use o índice do termo novo na expressão original.", "source": "Lista 1, questões 1(a) e 2; adaptação."}, {"cat": "Somatórios", "question": "Qual é a forma fechada de Σ(2i+3)², para i=0…n−1?", "options": ["(4n³+12n²+11n)/3", "4n²+12n+9", "n(n+1)/2", "(4n³+12n²+27n)/3"], "correct": 0, "explain": "Expanda para 4i²+12i+9. Somando: 4(n−1)n(2n−1)/6 + 6n(n−1) + 9n = (4n³+12n²+11n)/3.", "hint": "Expanda o quadrado antes de somar.", "source": "Lista 1, questão 1(b)."}, {"cat": "Complexidade", "question": "Para T(n)=500n+100n^1,5+50n log₁₀n, qual é a ordem justa?", "options": ["Θ(n)", "Θ(n log n)", "Θ(n^1,5)", "Θ(n²)"], "correct": 2, "explain": "n^1,5 cresce mais rápido que n log n e n. O coeficiente 100 não altera a ordem. n² não é um termo da função.", "hint": "Compare somente os crescimentos que aparecem na função.", "source": "Lista 1, questão 5(b)."}, {"cat": "Complexidade", "question": "Para T(n)=100n+0,01n², qual afirmação é falsa?", "options": ["T(n) é O(n³)", "T(n) é Ω(n)", "T(n) é Θ(n²)", "T(n) é O(n)"], "correct": 3, "explain": "T(n)/n = 100+0,01n cresce sem limite. Logo não há constante que torne cn um limite superior eventual.", "hint": "Um limite superior precisa acompanhar o termo dominante.", "source": "Lista 1, questão 5(g); adaptação."}, {"cat": "Complexidade", "question": "Questão 10: para n=4, conte subtrações: for i=0…n−1; dentro, for j=0…i−1 faz b=b−1 e c--; depois do interno, d=c−d.", "options": ["7", "10", "16", "32"], "correct": 2, "explain": "Para i=0,1,2,3 os custos são 1,3,5,7. Total 16 = n². 7 é apenas a última passagem.", "hint": "Cada passagem externa custa 2i+1.", "source": "Lista 1, questão 10; adaptação numérica."}, {"cat": "Complexidade", "question": "No exemplo de encontrar o menor: for(i=1; i<n; i++) compara min com array[i]. Para n=6, quantas comparações entre dados?", "options": ["5", "6", "15", "36"], "correct": 0, "explain": "i assume 1,2,3,4,5. Cada passagem faz uma comparação, portanto 5. Não somamos os valores do índice.", "hint": "Conte quantos valores válidos i assume.", "source": "Noções de Complexidade, exemplo resolvido 17, pp. 152–158; adaptação."}, {"cat": "Ordenações", "question": "No Selection dos slides, quando acontece swap(menor,i)?", "options": ["Sempre que aparece um valor menor", "Depois de terminar a busca interna", "Antes de iniciar a busca interna", "Somente se o vetor inteiro estiver ordenado"], "correct": 1, "explain": "Durante a busca só atualizamos menor. O swap fica depois do laço de j, quando já examinamos a parte restante.", "hint": "Observe onde termina o laço interno.", "source": "Seleção, código da página 35; adaptação."}, {"cat": "Ordenações", "question": "Bolha da esquerda para a direita: partindo de [101,115,30,63,47,20], como termina a primeira passagem completa?", "options": ["[20,101,115,30,63,47]", "[30,101,115,63,47,20]", "[101,30,63,47,20,115]", "[20,30,47,63,101,115]"], "correct": 2, "explain": "115 troca com 30, depois 63, 47 e 20. O maior termina no final; o restante ainda não está ordenado.", "hint": "Siga os pares vizinhos usando o vetor atualizado.", "source": "Bolha, exemplo com esses valores e código de apoio; adaptação."}, {"cat": "Ordenações", "question": "Inserção: com [101,115,30,63,47,20], qual é o prefixo após encaixar o 30 (i=2)?", "options": ["[30,101,115]", "[101,30,115]", "[115,101,30]", "[30,115,101]"], "correct": 0, "explain": "Guarda 30, desloca 115 e 101 à direita e coloca 30 no início. O prefixo fica ordenado.", "hint": "Os dois anteriores são maiores que tmp.", "source": "Inserção, página 49 e exemplo; adaptação."}, {"cat": "Ordenações", "question": "Shellsort do material usa h=3h+1 e reduz com h/=3. Para n=6, quais saltos são efetivamente usados para ordenar?", "options": ["3,1", "13,4,1", "6,3,1", "4,1"], "correct": 3, "explain": "A preparação gera 1,4,13. O laço divide antes de ordenar: primeiro 4, depois 1. Não ordena com 13.", "hint": "Repare que a divisão ocorre antes de insercaoPorCor.", "source": "Shellsort.java do repositório; adaptação."}, {"cat": "Listas", "question": "Lista simples com cabeça e dados [2,5,9]: qual ligação pula a segunda célula de dados, após guardar a referência para ela?", "options": ["primeiro.prox = primeiro.prox.prox", "primeiro.prox.prox = primeiro.prox.prox.prox", "ultimo.prox = primeiro", "primeiro = ultimo"], "correct": 1, "explain": "primeiro.prox é a célula do 2. Seu prox deve apontar para a célula do 9, pulando o 5. Em C, a retirada deve ser liberada depois.", "hint": "Encontre o anterior do segundo dado.", "source": "Lista Simples, exercício 1, pp. 57–58; adaptação com valores."}, {"cat": "Listas", "question": "Na classe ListaSimplesEncadeadaOrdenada, para inserir 5 em [2,7,9], anterior para no 2. Qual ordem conecta a nova célula corretamente?", "options": ["anterior.prox=nova; nova.prox=anterior.prox;", "nova.prox=null; anterior.prox=nova;", "nova.prox=anterior.prox; anterior.prox=nova;", "primeiro=nova; ultimo=nova;"], "correct": 2, "explain": "Primeiro preservamos o resto, ligando nova ao 7. Depois ligamos 2 à nova. Inverter as duas atribuições faria nova apontar para si mesma.", "hint": "Guarde a ligação para o restante antes de substituí-la.", "source": "Lista Simples, exercício 2, p. 59; resolução adaptada."}, {"cat": "Listas", "question": "Ao remover a última célula de uma lista dupla com cabeça, qual atualização mantém o final correto?", "options": ["ultimo=ultimo.ant; ultimo.prox=null;", "ultimo=ultimo.prox;", "primeiro=ultimo;", "ultimo.ant=null;"], "correct": 0, "explain": "O anterior vira o último e seu prox vira null. Guarde antes a célula retirada para liberar em C. O ant do novo último continua necessário.", "hint": "O novo último é o antigo penúltimo.", "source": "Lista Dupla, operação removerFim; adaptação do algoritmo."}, {"cat": "Filas", "question": "Com vetor de tamanho 6 e uma posição reservada, quantos dados a fila circular pode guardar?", "options": ["5", "6", "7", "4"], "correct": 0, "explain": "Uma posição distingue cheio de vazio: capacidade útil = 6−1 = 5. O material aloca tamanho solicitado + 1 nessa convenção.", "hint": "Separe tamanho físico e capacidade útil.", "source": "Fila linear/circular, construtor e exercício p. 131; adaptação."}, {"cat": "Filas", "question": "Fila circular com array.length=6, primeiro=3 e ultimo=5, não cheia. Após inserir um valor, ultimo será:", "options": ["6", "4", "3", "0"], "correct": 3, "explain": "A inserção escreve em array[5] e faz ultimo=(5+1)%6=0. primeiro não muda.", "hint": "Aplique o módulo depois de somar 1.", "source": "Fila linear/circular, algoritmo de inserção; adaptação."}, {"cat": "Filas", "question": "Fila flexível com cabeça que avança: depois de remover o primeiro dado, o que acontece?", "options": ["A cabeça antiga passa a ser o último dado", "A célula do dado retirado vira a nova cabeça", "O último deve ser sempre null", "Todos os valores são deslocados"], "correct": 1, "explain": "primeiro=primeiro.prox avança a cabeça. O valor dessa célula deixa de contar, e percorremos dados a partir de primeiro.prox.", "hint": "Acompanhe a atribuição a primeiro no método remover.", "source": "Fila flexível, método remover; adaptação."}, {"cat": "Pilhas", "question": "Pilha inicialmente vazia: inserir 1,3,5,7 e remover duas vezes. Quais valores saem, nessa ordem?", "options": ["1 e 3", "3 e 1", "7 e 5", "5 e 7"], "correct": 2, "explain": "A pilha é LIFO. O topo é 7; após retirá-lo o topo passa a ser 5.", "hint": "A última inserção ocupa o topo.", "source": "Pilha linear, exercício pp. 4–5; adaptação."}, {"cat": "Pilhas", "question": "Para implementar uma pilha eficiente numa lista em vetor, quais operações devemos combinar?", "options": ["Inserir início e remover fim", "Inserir fim e remover início", "Inserir início e remover início", "Inserir fim e remover fim"], "correct": 3, "explain": "Inserção e remoção no final evitam deslocamentos. Ambas no início também produzem LIFO, mas custam O(n) pela movimentação dos demais.", "hint": "O exercício compara duas soluções e sua eficiência.", "source": "Pilha linear, exercício pp. 4–5; adaptação."}];</script><script>const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let quizTimer=null;
+function reveal(){let el=document.getElementById(location.hash.slice(1));if(el&&el.tagName==='DETAILS'){el.open=true;requestAnimationFrame(()=>el.scrollIntoView({block:'start'}));}}
+window.addEventListener('hashchange',reveal);
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{let el=document.getElementById(a.hash.slice(1));if(el?.tagName==='DETAILS')el.open=true;}));
+document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{let wrap=b.closest('.program');wrap.querySelectorAll('[data-lang]').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));wrap.querySelectorAll('[data-code]').forEach(x=>x.hidden=x.dataset.code!==b.dataset.lang);});
+document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{const code=b.closest('.program').querySelector('[data-code]:not([hidden]) code');try{await navigator.clipboard.writeText(code.textContent);b.textContent='Copiado';}catch(e){const r=document.createRange();r.selectNodeContents(code);const sel=getSelection();sel.removeAllRanges();sel.addRange(r);b.textContent='Código selecionado';}});
+// Quiz: one answer per question, explanations remain after errors.
+let qcat='',qindex=0,qscore=0,qanswers=[],qset=[];const scores={};
+try{Object.assign(scores,JSON.parse(localStorage.getItem('aeds2-scores')||'{}'));}catch(e){}
+function chooseCat(cat){clearTimeout(quizTimer);qcat=cat;qindex=0;qscore=0;qanswers=[];qset=QUIZ.filter(q=>q.cat===cat);drawQ();}
+function drawCats(){ $('quiz-cats').innerHTML=[...new Set(QUIZ.map(q=>q.cat))].map(c=>`<button class="cat" data-cat="${c}">${c}<small>${QUIZ.filter(q=>q.cat===c).length} questões${scores[c]!=null?' · último: '+scores[c]:''}</small></button>`).join('');$('quiz-cats').querySelectorAll('button').forEach(b=>b.onclick=()=>chooseCat(b.dataset.cat));}
+function drawQ(){
+ const host=$('quiz-question');
+ if(qindex>=qset.length){scores[qcat]=`${qscore}/${qset.length}`;try{localStorage.setItem('aeds2-scores',JSON.stringify(scores));}catch(e){}drawCats();host.innerHTML=`<h3>${esc(qcat)}: ${qscore} de ${qset.length}</h3><p>Acertos na primeira tentativa. Revise as explicações e tente novamente quando quiser.</p><button id="retry">Refazer esta matéria</button>`+qanswers.map((a,i)=>`<details><summary>${a.ok?'✓':'↻'} Questão ${i+1}</summary><p>${esc(qset[i].question)}</p><p><b>Resposta:</b> ${esc(qset[i].options[qset[i].correct])}</p><p>${esc(qset[i].explain)}</p></details>`).join('');$('retry').onclick=()=>chooseCat(qcat);return;}
+ const q=qset[qindex];host.innerHTML=`<div class="eyebrow">${esc(qcat)} · ${qindex+1}/${qset.length}</div><h3>${esc(q.question)}</h3><details class="hint"><summary>Ver dica</summary><p>${esc(q.hint)}</p></details><div class="answers">${q.options.map((o,i)=>`<button data-answer="${i}"><b>${'ABCD'[i]}</b> ${esc(o)}</button>`).join('')}</div><div id="feedback" aria-live="polite"></div><p class="source">${esc(q.source)}</p>`;
+ host.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>answer(+b.dataset.answer));
+}
+function answer(i){const q=qset[qindex],ok=i===q.correct;qanswers.push({i,ok});if(ok)qscore++;$('quiz-question').querySelectorAll('[data-answer]').forEach(b=>{b.disabled=true;if(+b.dataset.answer===q.correct)b.classList.add('correct');else if(+b.dataset.answer===i)b.classList.add('wrong');});
+ $('feedback').innerHTML=ok?'<p class="success">✓ Acertou! Próxima questão…</p>':`<p class="error"><b>A correta é ${'ABCD'[q.correct]}: ${esc(q.options[q.correct])}.</b></p><p>${esc(q.explain)}</p><button id="next-question">Entendi · próxima questão</button>`;
+ if(ok){quizTimer=setTimeout(()=>{qindex++;drawQ();},1000);}else{$('next-question').onclick=()=>{qindex++;drawQ();};}
+}
+drawCats();
+// Traces are computed locally. Each snapshot is a real array state.
+function sortTrace(kind,initial){let a=[...initial],frames=[];function snap(msg,hi=[],extra=''){frames.push({a:[...a],msg,hi,extra});}snap('Estado inicial. Índices começam em zero.');
+ const swap=(i,j)=>{[a[i],a[j]]=[a[j],a[i]];};
+ if(kind==='select'){for(let i=0;i<a.length-1;i++){let m=i;snap(`i=${i}; menor=${i}. Procurar o menor da parte restante.`,[i]);for(let j=i+1;j<a.length;j++){snap(`Comparar array[${m}]=${a[m]} com array[${j}]=${a[j]}.`,[m,j]);if(a[j]<a[m]){m=j;snap(`Atualiza menor=${j}. Ainda não troca!`,[m]);}}swap(i,m);snap(`Terminou a busca: swap(${m}, ${i}).`,[i,m]);}}
+ if(kind==='bubble'){for(let i=a.length-1;i>0;i--)for(let j=0;j<i;j++){snap(`i=${i}; comparar vizinhos ${j} e ${j+1}.`,[j,j+1]);if(a[j]>a[j+1]){swap(j,j+1);snap(`swap(${j}, ${j+1}). Continue para o próximo par.`,[j,j+1]);}else snap('Vizinhos em ordem: não troca.',[j,j+1]);}}
+ if(kind==='insert'){for(let i=1;i<a.length;i++){let tmp=a[i],j=i-1;snap(`i=${i}; guardar tmp=${tmp}.`,[i],`tmp=${tmp}`);while(j>=0&&a[j]>tmp){a[j+1]=a[j];snap(`Copiar array[${j}] para [${j+1}]; depois j--. Valores repetidos são esperados.`,[j,j+1],`tmp=${tmp}`);j--;}a[j+1]=tmp;snap(`Encaixar tmp em ${j+1}.`,[j+1]);}}
+ if(kind==='shell'){let h=1;do{h=3*h+1;}while(h<a.length);do{h=Math.trunc(h/3);snap(`Salto h=${h}. Organize cada grupo de índices.`,[],`h=${h}`);for(let cor=0;cor<h;cor++){for(let i=cor+h;i<a.length;i+=h){let tmp=a[i],j=i-h;while(j>=0&&a[j]>tmp){a[j+h]=a[j];snap(`cor=${cor}: deslocar do índice ${j} para ${j+h}.`,[j,j+h],`h=${h}; tmp=${tmp}`);j-=h;}a[j+h]=tmp;snap(`cor=${cor}: encaixar ${tmp} no índice ${j+h}.`,[j+h],`h=${h}`);}}}while(h!==1);}
+ if(kind==='quick'){function run(e,d){if(e>=d)return;let i=e,j=d,p=a[e+Math.trunc((d-e)/2)];snap(`Parte ${e}…${d}; pivô=${p}.`,[e,d],`pivô=${p}`);while(i<=j){while(a[i]<p)i++;while(a[j]>p)j--;if(i<=j){swap(i,j);snap(`Trocar ${i} e ${j}; avançar i e recuar j.`,[i,j],`pivô=${p}`);i++;j--;}}run(e,j);run(i,d);}run(0,a.length-1);}
+ if(kind==='merge'){function run(e,d){if(e>=d)return;let m=e+Math.trunc((d-e)/2);snap(`Dividir ${e}…${d} em ${e}…${m} e ${m+1}…${d}.`,[e,m,d]);run(e,m);run(m+1,d);let out=[],i=e,j=m+1;while(i<=m&&j<=d){if(a[i]<=a[j])out.push(a[i++]);else out.push(a[j++]);}while(i<=m)out.push(a[i++]);while(j<=d)out.push(a[j++]);snap('Metades ordenadas: construir auxiliar intercalado.',[],`aux=[${out.join(', ')}]`);for(let k=0;k<out.length;k++)a[e+k]=out[k];snap(`Copiar auxiliar para ${e}…${d}.`,[e,d]);}run(0,a.length-1);}
+ if(kind==='heap'){function down(n,i){let m=i,e=2*i+1,d=2*i+2;if(e<n&&a[e]>a[m])m=e;if(d<n&&a[d]>a[m])m=d;if(m!==i){swap(i,m);snap(`Heap: trocar pai ${i} com maior filho ${m}.`,[i,m],`heap: ${n} elementos`);down(n,m);}}for(let i=Math.trunc(a.length/2)-1;i>=0;i--)down(a.length,i);snap('Heap máximo construído: maior está no índice 0.');for(let end=a.length-1;end>0;end--){swap(0,end);snap(`Levar maior para ${end}; esta posição sai do heap.`,[0,end]);down(end,0);}}
+ if(kind==='count'){let count=Array(Math.max(...a)+1).fill(0);for(let i=0;i<a.length;i++){count[a[i]]++;snap(`Contar valor ${a[i]}.`,[i],count.map((n,v)=>n?`${v}:${n}`:'').filter(Boolean).join(' · '));}let pos=0;for(let v=0;v<count.length;v++)for(let k=0;k<count[v];k++){a[pos]=v;snap(`Reescrever ${v} no índice ${pos}.`,[pos]);pos++;}}
+ if(kind==='radix'){let max=Math.max(...a);for(let div=1;Math.trunc(max/div)>0;div*=10){let buckets=Array.from({length:10},()=>[]);for(const v of a)buckets[Math.trunc(v/div)%10].push(v);a=buckets.flat();snap(`Ordenar estavelmente pelo dígito de divisor ${div}.`,[],`divisor=${div}`);}}
+ snap('Ordenado. Confira os valores em ordem crescente.');return frames;
+}
+function states(type){
+ if(type==='arraylist')return [{a:[2,7,9],msg:'Lista em vetor. Inserir 5 na posição 1; n=3.'},{a:[2,7,9,9],hi:[2,3],msg:'i=3: copiar array[2] para array[3].',extra:'valor=5'},{a:[2,7,7,9],hi:[1,2],msg:'i=2: copiar array[1] para array[2].',extra:'valor=5'},{a:[2,5,7,9],hi:[1],msg:'array[1]=5; n passa a 4.'},{a:[2,5,7,9],hi:[1],msg:'Agora remover posição 1: guardar 5.'},{a:[2,7,9],msg:'Deslocar os seguintes à esquerda; n volta a 3. Retorno: 5.'}];
+ if(type==='stack'||type==='stacklink')return [{a:[],msg:'Pilha vazia.'},{a:[10],msg:'Inserir 10. Ele é o topo.'},{a:[10,20],msg:'Inserir 20. Novo topo=20.'},{a:[10,20,30],hi:[2],msg:'Inserir 30. Novo topo=30.'},{a:[10,20],hi:[1],msg:'Remover retorna 30. Topo volta ao 20.'}];
+ if(type==='queue')return [{a:[],msg:'Fila vazia.'},{a:[10],msg:'Inserir 10 no final.'},{a:[10,20],msg:'Inserir 20 no final.'},{a:[10,20,30],msg:'Inserir 30 no final.'},{a:[20,30],msg:'Remover retorna 10; deslocar 20 e 30 à esquerda.'}];
+ if(type==='circle')return [{a:[null,null,null,null,null],p:0,u:0,active:[],msg:'TAM=5 nesta demonstração; cabem 4 dados. Vazia: primeiro=ultimo=0.'},{a:[10,20,30,40,null],p:0,u:4,active:[0,1,2,3],msg:'Após inserir 10,20,30,40, está cheia: (4+1)%5=0.'},{a:[10,20,30,40,null],p:1,u:4,active:[1,2,3],msg:'Remover 10: primeiro=(0+1)%5=1. O valor antigo não é apagado.'},{a:[10,20,30,40,50],p:1,u:0,active:[1,2,3,4],msg:'Inserir 50 em 4; ultimo=(4+1)%5=0. Voltou ao começo.'},{a:[10,20,30,40,50],p:2,u:0,active:[2,3,4],msg:'Remover 20: primeiro=2. A ordem lógica é 30,40,50.'},{a:[60,20,30,40,50],p:2,u:1,active:[2,3,4,0],msg:'Inserir 60 em 0; ultimo=1. Ordem lógica: 30,40,50,60.'}];
+ if(type==='queuehead')return [{a:['H'],msg:'Cabeça auxiliar. primeiro e ultimo apontam para ela.'},{a:['H',10,20],msg:'Inserir 10 e 20: ultimo aponta para 20.'},{a:['H',10,20],hi:[1],msg:'Guardar cabeça antiga; primeiro avança para a célula do 10.'},{a:['H (era 10)',20],msg:'Retornar 10 e liberar cabeça antiga. A célula do 10 é a nova cabeça; seu valor não conta.'},{a:['H (era 20)'],msg:'Remover 20: sua célula vira cabeça. primeiro==ultimo: vazia.'}];
+ if(type==='simple'||type==='double')return [{a:['H',2,7,9],msg:'Lista ordenada. Inserir 5 depois da célula do 2.'},{a:['H',2,7,9],hi:[1],extra:'nova=5 (ainda fora da cadeia)',msg:'anterior aponta para 2; criar a nova célula.'},{a:['H',2,7,9],hi:[2],extra:type==='double'?'nova.prox=7; nova.ant=2':'nova.prox aponta para 7',msg:'Preservar o resto: conectar nova ao próximo.'},{a:['H',2,5,7,9],hi:[2],msg:type==='double'?'Conectar 2.prox à nova e 7.ant à nova. Ambos os sentidos corretos.':'Conectar anterior.prox à nova. Lista: 2,5,7,9.'},{a:['H',2,5,7,9],hi:[2],msg:'Remover a célula do 5: guardar seu valor e sua referência.'},{a:['H',2,7,9],hi:[1,2],msg:type==='double'?'2.prox=7 e 7.ant=2. Liberar célula do 5 em C.':'2.prox=7 pula a célula do 5. Liberá-la em C.'}];
+ if(type==='complexity')return [2,5,10,20].map(n=>({a:[n,n*n,n*n*n],labels:['n','n²','n³'],msg:`Comparação de crescimento para n=${n}.`,extra:'Para uma função quadrática, n² é limite justo; n³ é limite superior mais folgado.'}));
+ if(type==='sum')return [0,1,2,3,4].map(i=>({a:Array.from({length:i+1},(_,k)=>2*k+1),hi:[i],msg:`Questão 10: i=${i}; custo dessa passagem=2×${i}+1=${2*i+1}.`,extra:`Acumulado=${(i+1)**2}. Não confunda custo da passagem com total.`}));
+ if(type==='log')return [16,8,4,2,1].map((v,i)=>({a:[v],msg:v>1?`i=${v}: condição i>1 verdadeira; executar e depois dividir por 2.`:'i=1: condição falsa; não executa.',extra:`Execuções concluídas antes deste teste: ${i}`}));
+ if(type==='induction')return [{a:[1],msg:'Base: S(1)=1=1×2/2.'},{a:[1,2,3],msg:'Exemplo para entender a hipótese: se k=3, S(k)=6.'},{a:[1,2,3,4],hi:[3],msg:'Novo termo=k+1=4. S(4)=S(3)+4=10.'},{a:['S(k)','k+1'],msg:'No caso geral, substituir apenas S(k) por k(k+1)/2.'},{a:['k(k+1)/2','k+1'],msg:'Somar usando denominador 2.'},{a:['(k+1)(k+2)/2'],msg:'Chegou à fórmula em k+1. Exemplo não é prova; esta identidade é o passo geral.'}];
+ if(type==='search')return [{a:[2,5,8,12,16,23,38],hi:[3],msg:'Buscar 16: esq=0, dir=6, meio=3. array[3]=12; esq=4.'},{a:[2,5,8,12,16,23,38],hi:[5],msg:'meio=5: array[5]=23; dir=4.'},{a:[2,5,8,12,16,23,38],hi:[4],msg:'meio=4: encontrou 16. Retorna índice 4.'}];
+ return [];
+}
+function svgNodes(f,mode){const linked=['simple','double','queuehead','stacklink'].includes(mode);if(!linked)return '';
+ let vals=[...f.a],hi=f.hi||[];if(mode==='stacklink'){vals.reverse();hi=hi.map(i=>vals.length-1-i);}
+ const h=Math.max(100,vals.length*66+32),double=mode==='double';let s=`<svg viewBox="0 0 310 ${h}" role="img" aria-label="Estado das células"><defs><marker id="arrow-${mode}" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker></defs>`;
+ if(!vals.length)return s+'<text x="40" y="40">topo = null</text></svg>';
+ vals.forEach((v,i)=>{let y=15+i*66;s+=`<rect x="102" y="${y}" width="110" height="38" rx="8" class="${hi.includes(i)?'hot':'node'}"/><text x="157" y="${y+25}" text-anchor="middle">${esc(v)}</text>`;let label=i===0?(mode==='stacklink'?'topo':'primeiro'):'';if(i===vals.length-1&&mode!=='stacklink')label+=(label?' / ':'')+'ultimo';if(label)s+=`<text x="8" y="${y+25}" class="ptr">${label}</text>`;if(i<vals.length-1){s+=`<path d="M ${double?177:157} ${y+39} V ${y+63}" marker-end="url(#arrow-${mode})"/><text x="218" y="${y+59}" class="ptr">prox</text>`;if(double)s+=`<path d="M 130 ${y+65} V ${y+42}" marker-end="url(#arrow-${mode})"/><text x="78" y="${y+59}" class="ptr">ant</text>`;}else s+=`<text x="220" y="${y+26}" class="ptr">prox=null</text>`;});return s+'</svg>';}
+function circleSvg(f){let s='<svg viewBox="0 0 320 320" role="img" aria-label="Fila circular com cinco posições">';for(let i=0;i<5;i++){let theta=-Math.PI/2+2*Math.PI*i/5,x=160+110*Math.cos(theta),y=160+110*Math.sin(theta);let active=f.active.includes(i);s+=`<rect x="${x-26}" y="${y-24}" width="52" height="48" rx="10" class="${active?'hot':'node'}"/><text x="${x}" y="${y+5}" text-anchor="middle">${f.a[i]??'—'}</text><text x="${x}" y="${y+40}" class="ptr" text-anchor="middle">índice ${i}</text>`;}s+=`<text x="160" y="145" text-anchor="middle">primeiro=${f.p}</text><text x="160" y="175" text-anchor="middle">ultimo=${f.u}</text></svg>`;return s;}
+function mountSim(host){const mode=host.dataset.sim;let at=0,frames=[],kind='';const isSort=['sort','simple','double'].includes(mode);
+ const options=mode==='sort'?[['select','Seleção'],['bubble','Bolha'],['insert','Inserção'],['shell','Shellsort'],['quick','Quicksort'],['merge','Mergesort'],['heap','Heapsort'],['count','Counting'],['radix','Radix']]:[['ops','Inserir e remover'],['select','Selection na lista'],['bubble','Bubble na lista'],['insert','Insertion na lista']];
+ host.innerHTML=`<h3>Veja acontecer</h3>${isSort?`<label>Operação<select>${options.map(([k,n])=>`<option value="${k}">${n}</option>`).join('')}</select></label>`:''}<div class="stage"></div><p class="simdesc" aria-live="polite"></p><div class="extras"></div><div class="step-controls"><button class="prev">← Voltar</button><span class="stepnum"></span><button class="next">Avançar →</button></div><button class="reset small">Reiniciar demonstração</button>`;
+ function load(){kind=isSort?host.querySelector('select').value:'';at=0;if(isSort&&kind!=='ops'){let initial=mode==='sort'?(kind==='count'?[3,1,2,1,3]:[101,115,30,63,47,20]):[3,4,1,5];frames=sortTrace(kind,initial);if(mode==='simple'&&kind==='insert'){let a=[...initial];frames=[{a:[...a],msg:'Lista simples: procurar pela frente onde inserir cada valor.'}];for(let i=1;i<a.length;i++){let tmp=a[i],p=0;while(p!==i&&a[p]<=tmp)p++;frames.push({a:[...a],hi:[i,p],extra:'tmp='+tmp,msg:'Encontrou a posição no prefixo ordenado.'});while(p!==i){let guardado=a[p];a[p]=tmp;tmp=guardado;frames.push({a:[...a],hi:[p],extra:'tmp='+tmp,msg:'Colocar o valor carregado e guardar o substituído; seguir por prox.'});p++;}a[i]=tmp;frames.push({a:[...a],hi:[i],msg:'Concluir a rotação do prefixo; ligações não mudam.'});}frames.push({a:[...a],msg:'Lista ordenada.'});}if(mode!=='sort')frames=frames.map(f=>({...f,a:['H',...f.a],hi:(f.hi||[]).map(i=>i+1),msg:f.msg+' As ligações permanecem; só os valores mudam.'}));}else frames=states(mode);draw();}
+ function draw(){const f=frames[at];if(!f)return;let html=mode==='circle'?circleSvg(f):svgNodes(f,mode);if(!html)html='<div class="cells">'+f.a.map((v,i)=>`<div class="cell ${(f.hi||[]).includes(i)?'hot':''}"><small>${f.labels?esc(f.labels[i]):(mode==='sum'?'i='+i:'índice '+i)}</small><strong>${esc(v)}</strong>${mode==='stack'&&i===f.a.length-1?'<small>topo</small>':''}</div>`).join('')+'</div>';host.querySelector('.stage').innerHTML=html;host.querySelector('.simdesc').textContent=f.msg;host.querySelector('.extras').textContent=f.extra||'';host.querySelector('.stepnum').textContent=`${at+1}/${frames.length}`;host.querySelector('.prev').disabled=at===0;host.querySelector('.next').disabled=at===frames.length-1;}
+ host.querySelector('.prev').onclick=()=>{if(at>0){at--;draw();}};host.querySelector('.next').onclick=()=>{if(at<frames.length-1){at++;draw();}};host.querySelector('.reset').onclick=load;if(isSort)host.querySelector('select').onchange=load;load();
+}
+document.querySelectorAll('[data-sim]').forEach(mountSim);
+reveal();
+</script><script id="reading-controls-script">
+(function(){
+ const root=document.documentElement,themeButton=document.getElementById('theme-toggle'),smaller=document.getElementById('font-smaller'),larger=document.getElementById('font-larger'),label=document.getElementById('font-label');
+ function paintTheme(){const dark=root.dataset.theme==='dark';themeButton.setAttribute('aria-pressed',String(dark));const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=dark?'#141b23':'#f3f0e9';}
+ themeButton.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('aeds2-theme',root.dataset.theme);}catch(e){}paintTheme();});
+ function paintSize(){const size=parseInt(root.style.getPropertyValue('--size'))||18;label.textContent=size+' px';smaller.disabled=size<=18;larger.disabled=size>=22;}
+ function resize(delta){let z=parseInt(root.style.getPropertyValue('--size'))||18;z=Math.max(18,Math.min(22,z+delta));root.style.setProperty('--size',z+'px');try{localStorage.setItem('aeds2-font-size',String(z));}catch(e){}paintSize();}
+ smaller.addEventListener('click',()=>resize(-2));larger.addEventListener('click',()=>resize(2));paintTheme();paintSize();
+ // Add color without changing the text users copy or the executable examples.
+ const escape=t=>t.replace(/[&<>]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[x]));
+ const token=/(\/\/[^\n]*|\/\*[\s\S]*?\*\/|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b(?:int|void|static|public|class|return|if|else|for|while|do|break|continue|new|typedef|struct|sizeof|NULL|null|throw|boolean|true|false|long|double)\b|\b\d+(?:\.\d+)?\b)/g;
+ document.querySelectorAll('pre code').forEach(code=>{const raw=code.textContent;let html='',end=0;for(const m of raw.matchAll(token)){html+=escape(raw.slice(end,m.index));const t=m[0],kind=t.startsWith('//')||t.startsWith('/*')?'comment':t.startsWith('"')||t.startsWith("'")?'string':/^\d/.test(t)?'number':'keyword';html+='<span class="tok-'+kind+'">'+escape(t)+'</span>';end=m.index+t.length;}code.innerHTML=html+escape(raw.slice(end));});
+})();
+</script></body></html>
